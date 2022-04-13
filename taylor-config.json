@@ -1,0 +1,19 @@
+{
+  "name": "Taylor Playground",
+  "version": "v0.0.1",
+  "input": "game.rb",
+  "export_directory": "exports",
+  "export_targets": [
+    "web"
+  ],
+  "load_paths": [
+    "./",
+    "./vendor"
+  ],
+  "copy_paths": [
+    "./assets"
+  ],
+  "web": {
+    "shell_path": "index.html"
+  }
+}
