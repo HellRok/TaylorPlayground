@@ -4,18 +4,20 @@ body {
   background-color: #222;
   overflow: hidden;
 }
+
 .centre {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.right, .left {
-  display: inline-block;
-  width: 50vw;
+  width: 100vw;
   height: 100vw;
 }
+
 canvas {
   max-height: 100%;
   max-width: 100%;
 }
 
+.hidden {
+  display: none;
+}

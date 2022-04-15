@@ -16,22 +16,11 @@ var Module = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector('#reload').addEventListener('click', () => {
-    const code = document.querySelector('#code').value;
-    window.location.search = `?code=${LZString.compressToEncodedURIComponent(code)}`;
-  });
-
   const codeArea = document.querySelector('#code');
 
   if (getCodeFromURL()) {
     codeArea.value = getCodeFromURL();
   }
-
-  const code = CodeMirror.fromTextArea(
-    codeArea, {
-      lineNumbers: true
-    });
-  code.on('change', () => { code.save(); });
 });
 
 function getCodeFromURL() {
