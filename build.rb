@@ -1,4 +1,4 @@
-#!/usr/bin/env taylor
+#!/usr/bin/env ruby
 
 def generate_example_selector
   examples = Dir.entries('./examples').reject! { _1 == '.' || _1 == '..' }
