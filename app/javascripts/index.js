@@ -4,6 +4,8 @@ const code = CodeMirror.fromTextArea(
   }
 );
 
+window.addEventListener('resize', () => { code.setSize("100%", window.innerHeight - 43); });
+
 document.addEventListener("DOMContentLoaded", () => {
   code.on('change', () => { code.save(); });
   // -25 pixels to ignore the toolbar

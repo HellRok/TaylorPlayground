@@ -7,7 +7,7 @@ body {
 }
 
 .toolbar {
-  height: 25px;
+  height: 43px;
 }
 
 .centre {
@@ -43,4 +43,72 @@ iframe {
   height: 100%;
   width: 100%;
   border: none;
+}
+
+/* min.css */
+
+.btn {
+  font-family: sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  background: #999;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin: 2px 0;
+  border-radius: 4px;
+  padding: 10px 14px 11px;
+}
+
+.btn:hover {
+  background: #888;
+}
+
+.btn:active,
+.btn:focus {
+  background: #777;
+}
+
+.btn-a {
+  background: #0ae;
+}
+
+.btn-a:hover {
+  background: #09d;
+}
+
+.btn-a:active,
+.btn-a:focus {
+  background: #08b;
+}
+
+.btn-b {
+  background: #3c5;
+}
+
+.btn-b:hover {
+  background: #2b4;
+}
+
+.btn-b:active,
+.btn-b:focus {
+  background: #2a4;
+}
+
+.btn-c {
+  background: #d33;
+}
+
+textarea,
+input,
+select {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+  border-color: #5ab;
 }
