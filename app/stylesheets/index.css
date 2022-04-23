@@ -2,8 +2,12 @@ body {
   margin: 0;
   padding: 0;
   background-color: #222;
-  overflow: hidden;
   min-height: 100vh;
+  overflow: hidden;
+}
+
+.toolbar {
+  height: 25px;
 }
 
 .centre {
@@ -17,8 +21,26 @@ body {
 canvas {
   max-height: 100%;
   max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  margin: 0;
+  padding: 0;
 }
 
 .hidden {
   display: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+iframe {
+  height: 100%;
+  width: 100%;
+  border: none;
 }

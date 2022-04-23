@@ -1,41 +1,56 @@
-var Module = {
-  print: (function() {
-    return function(text) {
-      //console.log(text);
-      logToConsole(text);
-    };
-  })(),
-  printErr: function(text) {
-    if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
-    if (0) {
-      //dump(text + '\n');
-      logToConsole(text);
-    }
-  },
-  canvas: (function() {
-    return document.getElementById('canvas');
-  })()
-};
+const code = CodeMirror.fromTextArea(
+  document.querySelector('#code'), {
+    lineNumbers: true
+  }
+);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const codeArea = document.querySelector('#code');
+  code.on('change', () => { code.save(); });
+  // -25 pixels to ignore the toolbar
+  code.setSize("100%", window.innerHeight - 25);
+
+  document.querySelector('#run').addEventListener('click', () => { runCode(); });
+  document.querySelector('#link').addEventListener('click', () => { generateLink(); });
+
+  const exampleSelector = document.querySelector('#example');
+  exampleSelector.addEventListener('change', () => { loadExample(); runCode(); });
 
   if (getCodeFromURL()) {
-    codeArea.value = getCodeFromURL();
+    exampleSelector.value = '#custom';
+    document.querySelector(exampleSelector.value).textContent = getCodeFromURL();
+    code.setValue(getCodeFromURL());
+  } else {
+    exampleSelector.value = '#welcome';
+    loadExample();
   }
+  runCode();
 });
 
 function getCodeFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  let code = params.get('code');
-
+  let code = window.location.hash.substr(1);
   if (code) { code = LZString.decompressFromEncodedURIComponent(code) };
-
   return code;
 }
 
-function logToConsole(message) {
-  const taylorConsole = document.querySelector('.console');
-  taylorConsole.textContent = taylorConsole.textContent + "\n" + message;
-  taylorConsole.scrollTop = taylorConsole.scrollHeight;
+function runCode() {
+  const iframe = document.querySelector('iframe');
+  const code = document.querySelector('#code').value;
+  const uri = new URL(iframe.src);
+  uri.hash = `#${LZString.compressToEncodedURIComponent(code)}`;
+
+  iframe.src = uri;
+  // Not really sure why this needs to be delayed, but doing it this way
+  // makes sure the initial load works, I guess we can't reload using an anchor
+  // tag too early?
+  setTimeout(() => { iframe.contentWindow.location.reload() }, 0);
+}
+
+function generateLink() {
+  const code = document.querySelector('#code').value;
+  window.location.hash = `#${LZString.compressToEncodedURIComponent(code)}`;
+}
+
+function loadExample() {
+  const select = document.querySelector('#example');
+  code.setValue(document.querySelector(select.value).textContent);
 }

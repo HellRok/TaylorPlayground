@@ -1,6 +1,8 @@
 # Add the path ./vendor so we can easily require third party libraries.
 $: << './vendor'
 
+puts "INFO: Playground made using Taylor v#{TAYLOR_VERSION}"
+
 # Open up a window
 init_window(800, 480, "Taylor Playground")
 
@@ -13,8 +15,12 @@ set_target_fps(get_monitor_refresh_rate(get_current_monitor))
 def main; end
 def fetch_code
   $code = get_attribute_from_element('#code', 'value')
+  example = File.open('example.rb', 'w')
+  example.write($code)
+  example.close
+
   begin
-    eval $code
+    require %q(./example)
   rescue SyntaxError
     eval <<-CODE
       def main
