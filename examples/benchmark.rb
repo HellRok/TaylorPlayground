@@ -1,3 +1,12 @@
+# Open up a window
+init_window(800, 480, "Taylor Application")
+
+# Setup audio so we can play sounds
+init_audio_device
+
+# Get the current monitor frame rate and set our target framerate to match.
+set_target_fps(get_monitor_refresh_rate(get_current_monitor))
+
 # Sprites from https://kenney.nl/assets/pixel-platformer
 $characters = Texture2D.load('./assets/characters.png')
 $backgrounds = Texture2D.load('./assets/backgrounds.png')
@@ -134,3 +143,13 @@ def main
     $pixel_font.draw("FPS: #{get_fps}\nAliens: #{$chars.size}", size: $pixel_font.base_size, position: $text_position)
   end
 end
+
+if browser?
+  set_main_loop 'main'
+else
+  # Detect window close button or ESC key
+  main until window_should_close?
+end
+
+close_audio_device
+close_window
