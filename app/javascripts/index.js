@@ -1,12 +1,13 @@
-const code = CodeMirror.fromTextArea(
-  document.querySelector('#code'), {
-    lineNumbers: true
-  }
-);
+let code;
 
 window.addEventListener('resize', () => { code.setSize("100%", window.innerHeight - 43); });
 
 document.addEventListener("DOMContentLoaded", () => {
+  code = CodeMirror.fromTextArea(
+    document.querySelector('#code'), {
+      lineNumbers: true
+    }
+  );
   code.on('change', () => { code.save(); });
   // -25 pixels to ignore the toolbar
   code.setSize("100%", window.innerHeight - 25);
