@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
   code.on('change', () => { code.save(); });
-  // -25 pixels to ignore the toolbar
-  code.setSize("100%", window.innerHeight - 25);
+  // -44 pixels to ignore the toolbar
+  code.setSize("100%", window.innerHeight - 44);
 
   document.querySelector('#run').addEventListener('click', () => { runCode(); });
   document.querySelector('#link').addEventListener('click', () => { generateLink(); });

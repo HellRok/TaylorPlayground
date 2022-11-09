@@ -2,12 +2,36 @@ body {
   margin: 0;
   padding: 0;
   background-color: #222;
-  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.grid > div {
+  max-height: calc(100vh - 44px);
+}
+
 .toolbar {
-  height: 43px;
+  padding: 3px;
+  text-align: center;
+}
+
+.examples {
+  display: inline-block;
+  width: 200px;
+  height: 38px;
+  margin: 0 8px;
+}
+
+/* Iframe */
+iframe {
+  height: 100%;
+  width: 100%;
+  border: none;
 }
 
 .centre {
@@ -15,7 +39,12 @@ body {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 50vh;
+  height: calc(50vh - 2px);
+}
+
+textarea {
+  margin: 0;
+  padding: 0;
 }
 
 canvas {
@@ -25,90 +54,6 @@ canvas {
   padding: 0;
 }
 
-textarea {
-  margin: 0;
-  padding: 0;
-}
-
 .hidden {
   display: none;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
-
-iframe {
-  height: 100%;
-  width: 100%;
-  border: none;
-}
-
-/* min.css */
-
-.btn {
-  font-family: sans-serif;
-  font-size: 16px;
-  text-decoration: none;
-  background: #999;
-  border: 0;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  margin: 2px 0;
-  border-radius: 4px;
-  padding: 10px 14px 11px;
-}
-
-.btn:hover {
-  background: #888;
-}
-
-.btn:active,
-.btn:focus {
-  background: #777;
-}
-
-.btn-a {
-  background: #0ae;
-}
-
-.btn-a:hover {
-  background: #09d;
-}
-
-.btn-a:active,
-.btn-a:focus {
-  background: #08b;
-}
-
-.btn-b {
-  background: #3c5;
-}
-
-.btn-b:hover {
-  background: #2b4;
-}
-
-.btn-b:active,
-.btn-b:focus {
-  background: #2a4;
-}
-
-.btn-c {
-  background: #d33;
-}
-
-textarea,
-input,
-select {
-  border: 1px solid #ccc;
-  padding: 8px;
-}
-
-textarea:focus,
-input:focus,
-select:focus {
-  border-color: #5ab;
 }

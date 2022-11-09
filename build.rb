@@ -12,7 +12,7 @@ def generate_example_selector
   }
 
   <<-EOS
-    <select id="example">#{option_elements}</select>
+    <select class="examples" id="example">#{option_elements}</select>
     #{example_elements}
   EOS
 end

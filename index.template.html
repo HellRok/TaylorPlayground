@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/chota">
     <link rel="stylesheet" href="./app/stylesheets/index.css"></style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js" integrity="sha512-xwrAU5yhWwdTvvmMNheFn9IyuDbl/Kyghz2J3wQRDR8tyNmT8ZIYOd0V3iPYY/g4XdNPy0n/g0NvqGu9f0fPJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -19,11 +20,11 @@
 
   <body>
     <div class="toolbar">
-      <button class="btn btn-b" id="run">Run</button>
-      <button class="btn btn-a" id="link">Generate Link</button>
+      <button class="button primary" id="run">Run</button>
+      <button class="button secondary" id="link">Generate Link</button>
       <!-- examples -->
-      <a class="btn" href="http://taylor.oequacki.com/documentation/" target="_blank">Documentation</a>
-      <a class="btn" href="http://taylor.oequacki.com/" target="_blank">Check out Taylor!</a>
+      <a class="button secondary" href="http://taylor.oequacki.com/documentation/" target="_blank">Documentation</a>
+      <a class="button secondary" href="http://taylor.oequacki.com/" target="_blank">Home</a>
     </div>
     <div class="grid">
       <div class="left">
