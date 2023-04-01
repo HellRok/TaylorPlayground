@@ -56,14 +56,14 @@ def update_player(player, env_items, delta)
 end
 
 # Initialization
-screen_width = 800;
-screen_height = 450;
+$screen_width = 800;
+$screen_height = 450;
 
-init_window(screen_width, screen_height, "raylib [core] example - 2d camera platformer");
+init_window($screen_width, $screen_height, "raylib [core] example - 2d camera platformer");
 
-player = Player.new(Vector2.new(400, 280), 0)
+$player = Player.new(Vector2.new(400, 280), 0)
 
-env_items = [
+$env_items = [
   EnvItem.new(Rectangle.new(0, 0, 1000, 400   ), 0, LIGHTGRAY),
   EnvItem.new(Rectangle.new(0, 400, 1000, 200 ), 1, GRAY),
   EnvItem.new(Rectangle.new(300, 200, 400, 10 ), 1, GRAY),
@@ -71,9 +71,9 @@ env_items = [
   EnvItem.new(Rectangle.new(650, 300, 100, 10 ), 1, GRAY),
 ]
 
-camera = Camera2D.new(
-  player.position,
-  Vector2.new(screen_width/2.0, screen_height/2.0),
+$camera = Camera2D.new(
+  $player.position,
+  Vector2.new($screen_width/2.0, $screen_height/2.0),
   0, 1,
 )
 
@@ -122,7 +122,7 @@ end
 
 EVEN_OUT_SPEED = 700
 EVENING_OUT = false
-EVEN_OUT_TARGET = player.position.y
+EVEN_OUT_TARGET = $player.position.y
 
 def update_camera_even_out_on_landing(camera, player, envItems, delta, width, height)
   camera.offset.x = width / 2.0
@@ -182,9 +182,9 @@ def camera_updaters(option, camera, player, env_items, delta, width, height)
   end
 end
 
-camera_option = 3
+$camera_option = 3
 
-camera_descriptions = [
+$camera_descriptions = [
   "Follow player center",
   "Follow player center, but clamp to map edges",
   "Follow player center; smoothed",
@@ -195,44 +195,44 @@ camera_descriptions = [
 set_target_fps(60);
 
 # Main game loop
-until window_should_close?
+def main
   # Update
   delta = get_frame_time
 
-  update_player(player, env_items, delta)
+  update_player($player, $env_items, delta)
 
-  camera.zoom += get_mouse_wheel_move * 0.05
+  $camera.zoom += get_mouse_wheel_move * 0.05
 
-  if camera.zoom > 3
-    camera.zoom = 3.0
-  elsif camera.zoom < 0.25
-    camera.zoom = 0.25
+  if $camera.zoom > 3
+    $camera.zoom = 3.0
+  elsif $camera.zoom < 0.25
+    $camera.zoom = 0.25
   end
 
   if key_pressed?(KEY_R)
-    camera.zoom = 1.0
-    player.position.x = 400
-    player.position.y = 280
+    $camera.zoom = 1.0
+    $player.position.x = 400
+    $player.position.y = 280
   end
 
   if key_pressed?(KEY_C)
-    camera_option += 1
-    camera_option = 0 if camera_option >= camera_descriptions.length
+    $camera_option += 1
+    $camera_option = 0 if $camera_option >= $camera_descriptions.length
   end
 
   # Call update camera function
-  camera_updaters(camera_option, camera, player, env_items, delta, screen_width, screen_height)
+  camera_updaters($camera_option, $camera, $player, $env_items, delta, $screen_width, $screen_height)
 
   # Draw
   begin_drawing
 
   clear_background(LIGHTGRAY)
 
-  begin_mode2D(camera)
+  begin_mode2D($camera)
 
-  env_items.each { |item| draw_rectangle_rec(item.rectangle, item.colour) }
+  $env_items.each { |item| draw_rectangle_rec(item.rectangle, item.colour) }
 
-  draw_rectangle(player.position.x - 20, player.position.y - 40, 40, 40, RED)
+  draw_rectangle($player.position.x - 20, $player.position.y - 40, 40, 40, RED)
 
   end_mode2D
 
@@ -242,9 +242,16 @@ until window_should_close?
   draw_text("- Mouse Wheel to Zoom in-out, R to reset zoom", 40, 80, 10, DARKGRAY)
   draw_text("- C to change camera mode", 40, 100, 10, DARKGRAY)
   draw_text("Current camera mode:", 20, 120, 10, BLACK)
-  draw_text(camera_descriptions[camera_option], 40, 140, 10, DARKGRAY)
+  draw_text($camera_descriptions[$camera_option], 40, 140, 10, DARKGRAY)
 
   end_drawing
+end
+
+if browser?
+  set_main_loop 'main'
+else
+  # Detect window close button or ESC key
+  main until window_should_close?
 end
 
 # De-Initialization
