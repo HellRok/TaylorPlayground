@@ -11,7 +11,7 @@ def fetch_code
 
   begin
     require %q(./example)
-  rescue SyntaxError
+  rescue SyntaxError => e
     eval <<-CODE
       def main
         drawing do
@@ -23,6 +23,8 @@ def fetch_code
           )
         end
       end
+
+      puts e.message
     CODE
   end
 end
