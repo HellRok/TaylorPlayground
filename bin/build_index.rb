@@ -6,6 +6,7 @@ def generate_example_selector
   example_elements = '';
 
   examples.each { |example|
+    puts "Adding #{example}"
     code = File.read(File.join('examples', example))
     option_elements += "<option value='##{example.gsub('.rb', '')}'>#{example}</option>"
     example_elements += "<div id='#{example.gsub('.rb', '')}' class='hidden'>#{code}</div>"
