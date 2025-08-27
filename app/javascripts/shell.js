@@ -1,4 +1,4 @@
-var Module = {
+window.Module = {
   print: (function() {
     return function(text) {
       logToConsole(text);

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+clean() {
+  rm -rf exports/*
+}
+
+build() {
+  mkdir -p /tmp/build
+  taylor export --build-cache /tmp/build
+
+  mkdir -p public/playground
+  pushd exports
+  unzip "*-web-*.zip"
+  mv \
+    index.html \
+    playground.data \
+    playground.js \
+    playground.wasm \
+    ../public/playground
+  popd
+
+  ./bin/build
+  npm run build
+}
+
+serve() {
+  pushd public
+  ruby -run -e httpd . --port ${PORT:-3001}
+  popd
+}
+
+clean
+build
+serve
