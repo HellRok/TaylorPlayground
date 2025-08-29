@@ -5,11 +5,17 @@ clean() {
   rm -rf exports/*
 }
 
-build() {
-  mkdir -p /tmp/build
-  taylor export --build-cache /tmp/build
-
+setup-folders() {
   mkdir -p public/playground
+}
+
+build-assets() {
+  ./bin/build
+  npm run build
+}
+
+build-playground() {
+  taylor export
   pushd exports
   unzip "*-web-*.zip"
   mv \
@@ -19,9 +25,11 @@ build() {
     playground.wasm \
     ../public/playground
   popd
+}
 
-  ./bin/build
-  npm run build
+build() {
+  build-assets
+  build-playground
 }
 
 serve() {
@@ -31,5 +39,6 @@ serve() {
 }
 
 clean
+setup-folders
 build
 serve

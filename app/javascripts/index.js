@@ -1,27 +1,23 @@
-let code;
+import {StreamLanguage} from "@codemirror/language"
+import {ruby} from "@codemirror/legacy-modes/mode/ruby"
+import {basicSetup, EditorView} from "codemirror"
+import {EditorState} from "@codemirror/state"
+import {oneDark} from "@codemirror/theme-one-dark"
 
-window.addEventListener('resize', () => { code.setSize("100%", window.innerHeight - 43); });
+import LZString from "lz-string";
 
 document.addEventListener("DOMContentLoaded", () => {
-  code = CodeMirror.fromTextArea(
-    document.querySelector('#code'), {
-      lineNumbers: true
-    }
-  );
-  code.on('change', () => { code.save(); });
-  // -44 pixels to ignore the toolbar
-  code.setSize("100%", window.innerHeight - 44);
+  window.editor = new EditorView({ parent: document.querySelector(".left") });
 
   document.querySelector('#run').addEventListener('click', () => { runCode(); });
   document.querySelector('#link').addEventListener('click', () => { generateLink(); });
-
   const exampleSelector = document.querySelector('#example');
   exampleSelector.addEventListener('change', () => { loadExample(); runCode(); });
 
   if (getCodeFromURL()) {
     exampleSelector.value = '#custom';
     document.querySelector(exampleSelector.value).textContent = getCodeFromURL();
-    code.setValue(getCodeFromURL());
+    setCode(getCodeFromURL());
   } else {
     exampleSelector.value = '#welcome';
     loadExample();
@@ -37,7 +33,7 @@ function getCodeFromURL() {
 
 function runCode() {
   const iframe = document.querySelector('iframe');
-  const code = document.querySelector('#code').value;
+  const code = window.editor.state.doc.toString();
   const uri = new URL(iframe.src);
   uri.hash = `#${LZString.compressToEncodedURIComponent(code)}`;
 
@@ -49,11 +45,24 @@ function runCode() {
 }
 
 function generateLink() {
-  const code = document.querySelector('#code').value;
+  const code = window.editor.state.doc.toString();
   window.location.hash = `#${LZString.compressToEncodedURIComponent(code)}`;
+}
+
+function setCode(code) {
+  window.editor.setState(
+    EditorState.create({
+      doc: code,
+      extensions: [
+        basicSetup,
+        StreamLanguage.define(ruby),
+        oneDark,
+      ]
+    })
+  );
 }
 
 function loadExample() {
   const select = document.querySelector('#example');
-  code.setValue(document.querySelector(select.value).textContent);
+  setCode(document.querySelector(select.value).textContent);
 }

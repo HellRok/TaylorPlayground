@@ -7,5 +7,11 @@
   },
   "devDependencies": {
     "esbuild": "^0.25.9"
+  },
+  "dependencies": {
+    "@codemirror/legacy-modes": "github:codemirror/legacy-modes",
+    "@codemirror/theme-one-dark": "github:codemirror/theme-one-dark",
+    "codemirror": "^6.0.2",
+    "lz-string": "^1.5.0"
   }
 }

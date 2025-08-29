@@ -1,3 +1,5 @@
+import LZString from "lz-string";
+
 window.Module = {
   print: (function() {
     return function(text) {
