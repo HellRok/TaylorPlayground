@@ -11,21 +11,26 @@ def fetch_code
 
   begin
     require %q(./example)
-  rescue SyntaxError => e
-    eval <<-CODE
-      def main
-        drawing do
+  rescue SyntaxError, StandardError => error
+    $error = error
+    puts $error.message
+    puts $error.backtrace unless $error.backtrace.nil?
 
-          clear
-          draw_text(
-            "SYNTAX ERROR!",
-            190, 200, 20, RED
-          )
-        end
+    def main
+      drawing do
+
+        clear
+        draw_text($error.message, 10, 10, 20, RED)
+        draw_text($error.backtrace.join("\n"), 10, 30, 20, BLACK) unless $error.backtrace.nil?
       end
+    end
 
-      puts e.message
-    CODE
+    unless window_ready?
+      init_window(800, 480, "Taylor Application")
+      set_target_fps(30)
+    end
+
+    set_main_loop 'main'
   end
 end
 
