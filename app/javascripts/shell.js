@@ -1,27 +1,31 @@
 import LZString from "lz-string";
 
-window.Module = {
-  print: (function() {
-    return function(text) {
+function setupModule() {
+  window.Module = {
+    print: (text) => logToConsole(text),
+    printErr: (text) => {
+      if (arguments.length > 1) {
+        text = Array.prototype.slice.call(arguments).join(' ');
+      }
+
       logToConsole(text);
-    };
-  })(),
-  printErr: function(text) {
-    if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
-    logToConsole(text);
-  },
-  canvas: (function() {
-    return document.getElementById('canvas');
-  })()
-};
+    },
 
-document.addEventListener("DOMContentLoaded", () => {
-  const codeArea = document.querySelector('#code');
+    canvas: document.getElementById('canvas'),
+  };
+}
 
-  if (getCodeFromURL()) {
-    codeArea.value = getCodeFromURL();
+function setupConsole() {
+  const taylorConsole = document.querySelector('.console');
+  const urlParams = new URLSearchParams(window.location.search);
+  const showConsole = urlParams.get('console');
+
+  if (showConsole) {
+    taylorConsole.classList.remove("hidden");
+  } else {
+    taylorConsole.classList.add("hidden");
   }
-});
+}
 
 function getCodeFromURL() {
   let code = window.location.hash.substr(1);
@@ -34,3 +38,12 @@ function logToConsole(message) {
   taylorConsole.textContent = taylorConsole.textContent + "\n" + message;
   taylorConsole.scrollTop = taylorConsole.scrollHeight;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupModule();
+  setupConsole();
+
+  if (getCodeFromURL()) {
+    document.querySelector('#code').value = getCodeFromURL();
+  }
+});

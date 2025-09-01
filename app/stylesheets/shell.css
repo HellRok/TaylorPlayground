@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0e1013;
+}
+
+.centre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas, .console {
+  width: 100vw;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.canvas-wrapper { flex: 1; }
+.console { flex: 1; }
+
+.hidden { display: none; }

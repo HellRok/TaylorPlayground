@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "build-index": "esbuild app/javascripts/index.js --bundle --outfile=public/index.js",
-    "build-shell": "esbuild app/javascripts/shell.js --bundle --outfile=public/playground/shell.js",
-    "build-css": "esbuild app/stylesheets/index.css --bundle --outfile=public/index.css",
-    "build": "npm run build-index && npm run build-shell && npm run build-css"
+    "build-index-js": "esbuild app/javascripts/index.js --bundle --outfile=public/index.js",
+    "build-index-css": "esbuild app/stylesheets/index.css --bundle --outfile=public/index.css",
+    "build-shell-js": "esbuild app/javascripts/shell.js --bundle --outfile=public/playground/shell.js",
+    "build-shell-css": "esbuild app/stylesheets/shell.css --bundle --outfile=public/playground/shell.css",
+    "build": "npm run build-index-js && npm run build-index-css && npm run build-shell-js && npm run build-shell-css"
   },
   "devDependencies": {
     "esbuild": "^0.25.9"

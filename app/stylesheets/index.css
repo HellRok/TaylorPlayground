@@ -125,6 +125,16 @@ a.button:visited {
   color: var(--fg);
 }
 
+.hidden {
+  display: none;
+}
+
+iframe {
+  height: 100%;
+  width: 100%;
+  border: none;
+}
+
 /* CodeMirror Tweaks */
 .cm-editor {
   height: 100%;
@@ -133,39 +143,4 @@ a.button:visited {
 
 .cm-scroller {
   overflow: auto;
-}
-
-/* Iframe */
-iframe {
-  height: 100%;
-  width: 100%;
-  border: none;
-}
-
-.centre {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: calc(50vh - 2px);
-}
-
-textarea {
-  margin: 0;
-  padding: 0;
-}
-
-.canvas-wrapper {
-  background: var(--black);
-}
-
-canvas {
-  max-height: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.hidden {
-  display: none;
 }
