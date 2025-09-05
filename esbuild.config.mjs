@@ -3,7 +3,7 @@ import esbuild from "esbuild";
 const options = {
   bundle: true, // Enable bundling
   format: "esm", // Enable ES Modules
-  minify: false, // Minify the output for production
+  minify: true, // Minify the output for production
   sourcemap: true, // Generate sourcemaps
   loader: {
     ".css": "css", // Handle CSS files
@@ -33,7 +33,7 @@ esbuild
 esbuild
   .build({
     entryPoints: ["app/javascripts/shell.js", "app/stylesheets/shell.css"],
-    outdir: "dist/v0.3.14.1",
+    outdir: "dist/playground",
     ...options,
   })
   .then(() => {

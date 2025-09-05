@@ -15,7 +15,7 @@ body {
 }
 
 canvas,
-.console {
+#console {
   width: 100vw;
   max-height: 100%;
   max-width: 100%;
@@ -30,7 +30,7 @@ canvas,
 .canvas-wrapper {
   flex: 1;
 }
-.console {
+#console {
   flex: 1;
 }
 

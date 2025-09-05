@@ -22,6 +22,6 @@ template = File.read('index.template.html')
 
 template.gsub!('<!-- examples -->', generate_example_selector)
 
-output = File.open('public/index.html', 'w')
+output = File.open('dist/index.html', 'w')
 output.write(template)
 output.close

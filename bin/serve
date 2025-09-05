@@ -6,7 +6,7 @@ clean() {
 }
 
 setup-folders() {
-  mkdir -p public/playground
+  mkdir -p dist/playground
 }
 
 build-assets() {
@@ -23,17 +23,17 @@ build-playground() {
     playground.data \
     playground.js \
     playground.wasm \
-    ../public/playground
+    ../dist/playground
   popd
 }
 
 build() {
   build-assets
-  build-playground
+  #build-playground
 }
 
 serve() {
-  pushd public
+  pushd dist
   ruby -run -e httpd . --port ${PORT:-3001}
   popd
 }
