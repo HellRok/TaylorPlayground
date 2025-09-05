@@ -99,7 +99,9 @@ body {
   border-color: var(--blue);
 }
 
-button, select, a.button {
+button,
+select,
+a.button {
   display: inline;
   padding: 10px;
   color: var(--fg);
@@ -108,7 +110,9 @@ button, select, a.button {
   border-radius: 0;
 }
 
-button:hover, select:hover, a.button:hover {
+button:hover,
+select:hover,
+a.button:hover {
   background: var(--bg3);
 }
 

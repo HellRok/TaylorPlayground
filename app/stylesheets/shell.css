@@ -14,7 +14,8 @@ body {
   align-items: center;
 }
 
-canvas, .console {
+canvas,
+.console {
   width: 100vw;
   max-height: 100%;
   max-width: 100%;
@@ -26,7 +27,13 @@ canvas, .console {
   flex-direction: column;
 }
 
-.canvas-wrapper { flex: 1; }
-.console { flex: 1; }
+.canvas-wrapper {
+  flex: 1;
+}
+.console {
+  flex: 1;
+}
 
-.hidden { display: none; }
+.hidden {
+  display: none;
+}

@@ -1,4 +1,4 @@
 exports
 raw_assets
-public
+dist
 node_modules

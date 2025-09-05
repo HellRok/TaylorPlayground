@@ -1,13 +1,16 @@
 {
   "scripts": {
-    "build-index-js": "esbuild app/javascripts/index.js --bundle --outfile=public/index.js",
-    "build-index-css": "esbuild app/stylesheets/index.css --bundle --outfile=public/index.css",
-    "build-shell-js": "esbuild app/javascripts/shell.js --bundle --outfile=public/playground/shell.js",
-    "build-shell-css": "esbuild app/stylesheets/shell.css --bundle --outfile=public/playground/shell.css",
-    "build": "npm run build-index-js && npm run build-index-css && npm run build-shell-js && npm run build-shell-css"
+    "build": "node esbuild.config.mjs",
+    "test": "npm run prettier:check && npm run jest",
+    "jest": "jest",
+    "prettier:check": "prettier . --check",
+    "prettier:fix": "prettier . --write"
   },
   "devDependencies": {
-    "esbuild": "^0.25.9"
+    "esbuild": "^0.25.9",
+    "jest": "^30.1.3",
+    "jest-environment-jsdom": "^30.1.2",
+    "prettier": "^3.6.2"
   },
   "dependencies": {
     "@codemirror/legacy-modes": "github:codemirror/legacy-modes",
