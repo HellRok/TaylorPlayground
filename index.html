@@ -27,9 +27,10 @@
 
   <body>
     <div class="toolbar">
-      <button class="green" id="run">Run</button>
+      <button class="green" id="run" onclick="Code.run()">Run</button>
       <button class="blue" id="link">Generate Link</button>
-      <!-- examples -->
+      <select id="version"></select>
+      <select id="example"></select>
       <a
         class="button"
         href="https://taylormadetech.dev/documentation/"
@@ -41,7 +42,7 @@
       >
     </div>
     <div class="grid">
-      <div class="left"></div>
+      <div id="editor" class="left"></div>
 
       <iframe class="right" src="./playground/?console=1"></iframe>
     </div>

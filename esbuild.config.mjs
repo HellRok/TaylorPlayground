@@ -21,7 +21,11 @@ const options = {
 
 esbuild
   .build({
-    entryPoints: ["app/javascripts/index.js", "app/stylesheets/index.css"],
+    entryPoints: [
+      "index.html",
+      "app/javascripts/index.js",
+      "app/stylesheets/index.css",
+    ],
     outdir: "dist",
     ...options,
   })

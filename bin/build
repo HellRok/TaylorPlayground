@@ -1,27 +1,20 @@
 #!/usr/bin/env ruby
 
-def generate_example_selector
-  examples = Dir.entries('./examples').reject! { _1.start_with?(".") }.sort
-  option_elements = '';
-  example_elements = '';
+require "json"
 
-  examples.each { |example|
-    puts "Adding #{example}"
-    code = File.read(File.join('examples', example))
-    option_elements += "<option value='##{example.gsub('.rb', '')}'>#{example}</option>"
-    example_elements += "<div id='#{example.gsub('.rb', '')}' class='hidden'>#{code}</div>"
-  }
+examples = {}
 
-  <<-EOS
-    <select class="examples" id="example">#{option_elements}</select>
-    #{example_elements}
-  EOS
+# Eventually consider moving this to JSON files split by version and loaded on
+# demand, for now though, one big Javascript file for simplicity.
+Dir.glob("examples/v*/*.rb").each do |path|
+  _, version, example = path.split("/")
+
+  puts "Processing '#{path}'"
+  examples[version] ||= {}
+  examples[version][example] = File.read(path)
 end
 
-template = File.read('index.template.html')
-
-template.gsub!('<!-- examples -->', generate_example_selector)
-
-output = File.open('dist/index.html', 'w')
-output.write(template)
-output.close
+File.write(
+  "app/javascripts/lib/example_data.js",
+  "export const ExampleData = #{JSON.pretty_generate(examples)}",
+)
