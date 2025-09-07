@@ -37,12 +37,24 @@ describe("Example", () => {
       });
 
       expect(Example.element.querySelectorAll("option").length).toEqual(3);
-      expect(Example.element.querySelectorAll("option")[0].value).toEqual("one.rb");
-      expect(Example.element.querySelectorAll("option")[0].textContent).toEqual("one.rb");
-      expect(Example.element.querySelectorAll("option")[1].value).toEqual("two.rb");
-      expect(Example.element.querySelectorAll("option")[1].textContent).toEqual("two.rb");
-      expect(Example.element.querySelectorAll("option")[2].value).toEqual("welcome.rb");
-      expect(Example.element.querySelectorAll("option")[2].textContent).toEqual("welcome.rb");
+      expect(Example.element.querySelectorAll("option")[0].value).toEqual(
+        "one.rb",
+      );
+      expect(Example.element.querySelectorAll("option")[0].textContent).toEqual(
+        "one.rb",
+      );
+      expect(Example.element.querySelectorAll("option")[1].value).toEqual(
+        "two.rb",
+      );
+      expect(Example.element.querySelectorAll("option")[1].textContent).toEqual(
+        "two.rb",
+      );
+      expect(Example.element.querySelectorAll("option")[2].value).toEqual(
+        "welcome.rb",
+      );
+      expect(Example.element.querySelectorAll("option")[2].textContent).toEqual(
+        "welcome.rb",
+      );
     });
 
     it("selects 'welcome.rb' by default", () => {
@@ -69,7 +81,6 @@ describe("Example", () => {
   });
 
   describe(".code", () => {
-
     it("returns the code for the current example", () => {
       Example.setup();
       Version.setup();

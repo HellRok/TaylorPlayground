@@ -43,7 +43,7 @@ describe("Editor", () => {
 
       expect(Editor.editor.state.doc.toString()).toEqual("");
 
-      Editor.setCode("ruby is great")
+      Editor.setCode("ruby is great");
 
       expect(Editor.editor.state.doc.toString()).toEqual("ruby is great");
     });

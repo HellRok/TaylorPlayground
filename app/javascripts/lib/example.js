@@ -25,7 +25,7 @@ export const Example = {
   },
 
   current: () => {
-    return Example.element.value
+    return Example.element.value;
   },
 
   code: () => {

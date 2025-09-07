@@ -26,7 +26,7 @@ describe("Version", () => {
     });
 
     it("sets the options", () => {
-      expect(document.querySelectorAll("#version option").length).toEqual(0)
+      expect(document.querySelectorAll("#version option").length).toEqual(0);
 
       Version.setup();
       const versionOptions = Version.element.querySelectorAll("option");

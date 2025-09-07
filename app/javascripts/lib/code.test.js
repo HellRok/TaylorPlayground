@@ -5,6 +5,7 @@ import { Editor } from "./editor";
 describe("Code", () => {
   afterEach(() => {
     document.body.innerHTML = "";
+    jest.restoreAllMocks();
   });
 
   beforeEach(() => {
@@ -88,8 +89,10 @@ describe("Code", () => {
 
       expect(document.querySelectorAll("iframe").length).toEqual(1);
       const iframe = document.querySelector("iframe");
-      expect(iframe.src).toEqual("http://localhost/playground/?console=1#MYewJgpkA");
-      expect(iframe.classList).toMatchObject({ "0": "right" });
+      expect(iframe.src).toEqual(
+        "http://localhost/playground/?console=1#MYewJgpkA",
+      );
+      expect(iframe.classList).toMatchObject({ 0: "right" });
     });
 
     it("only creates one iframe no matter how many times it's called", () => {

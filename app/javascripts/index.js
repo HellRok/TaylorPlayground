@@ -1,3 +1,4 @@
+import { Toolbar } from "./lib/toolbar";
 import { Code } from "./lib/code";
 import { Editor } from "./lib/editor";
 import { Example } from "./lib/example";
@@ -26,7 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
   //   loadExample();
   // }
   // runCode();
+  Toolbar.setup();
 
+  Code.setup();
   Example.setup();
   Version.setup();
   Version.load();
@@ -35,13 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(code);
 
   Editor.setCode(Example.code());
+  Code.run();
 });
 
 // function generateLink() {
 //   const code = window.editor.state.doc.toString();
 //   window.location.hash = `#${LZString.compressToEncodedURIComponent(code)}`;
 // }
-// 
+//
 // function loadExample() {
 //   const select = document.querySelector("#example");
 //   setCode(document.querySelector(select.value).textContent);

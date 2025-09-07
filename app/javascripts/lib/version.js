@@ -16,12 +16,10 @@ export const Version = {
   },
 
   load: () => {
-    Example.load(
-      ExampleData[Version.element.value],
-    )
+    Example.load(ExampleData[Version.element.value]);
   },
 
   current: () => {
     return Version.element.value;
   },
-}
+};
