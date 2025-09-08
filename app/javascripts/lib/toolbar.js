@@ -1,10 +1,18 @@
 import { Code } from "./code";
+import { Editor } from "./editor";
+import { Example } from "./example";
 
 export const Toolbar = {
-  element: undefined,
+  exampleElement: undefined,
+  runElement: undefined,
 
   setup: () => {
-    Toolbar.element = document.querySelector("#run");
-    Toolbar.element.addEventListener("click", Code.run);
+    Toolbar.runElement = document.querySelector("#run");
+    Toolbar.runElement.addEventListener("click", Code.run);
+    Toolbar.exampleElement = document.querySelector("#example");
+    Toolbar.exampleElement.addEventListener("change", () => {
+      Editor.setCode(Example.code());
+      Code.run();
+    });
   },
 };
