@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-watchexec --exts html,js,css,rb --restart --clear -- bin/serve
+watchexec --exts html,js,jsx,ts,tsx,mjs,css,rb --restart --clear -- bin/serve

@@ -1,13 +1,13 @@
 import esbuild from "esbuild";
 
 const options = {
-  bundle: true, // Enable bundling
-  format: "esm", // Enable ES Modules
-  minify: true, // Minify the output for production
-  sourcemap: true, // Generate sourcemaps
+  bundle: true,
+  format: "esm",
+  minify: true, // The build breaks without because of lezer
+  sourcemap: true,
   loader: {
-    ".css": "css", // Handle CSS files
-    ".html": "copy", // Handle HTML files
+    ".css": "css",
+    ".html": "copy",
   },
   logLevel: "info",
   entryNames: "[name]",
@@ -15,7 +15,7 @@ const options = {
   define: {
     "process.env.NODE_ENV": '"production"',
   },
-  external: ["node_modules/*"], // Exclude specific modules from being bundled (e.g., node_modules)
+  external: ["node_modules/*"],
   plugins: [],
 };
 
@@ -23,7 +23,7 @@ esbuild
   .build({
     entryPoints: [
       "index.html",
-      "app/javascripts/index.js",
+      "app/javascripts/index.tsx",
       "app/stylesheets/index.css",
     ],
     outdir: "dist",
@@ -36,7 +36,7 @@ esbuild
 
 esbuild
   .build({
-    entryPoints: ["app/javascripts/shell.js", "app/stylesheets/shell.css"],
+    entryPoints: ["app/javascripts/shell.ts", "app/stylesheets/shell.css"],
     outdir: "dist/playground",
     ...options,
   })

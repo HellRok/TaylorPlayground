@@ -1,10 +1,18 @@
+import { Playground } from "./lib/playground";
+
 import { Toolbar } from "./lib/toolbar";
 import { Code } from "./lib/code";
 import { Editor } from "./lib/editor";
 import { Example } from "./lib/example";
 import { Version } from "./lib/version";
 
+import { createRoot } from "react-dom/client";
+
 document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector("#playground")
+  const root = createRoot(container!);
+  root.render(<Playground />);
+
   Editor.setup();
 
   // document.querySelector("#link").addEventListener("click", () => {

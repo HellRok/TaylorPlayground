@@ -9,6 +9,7 @@ export const Toolbar = {
   setup: () => {
     Toolbar.runElement = document.querySelector("#run");
     Toolbar.runElement.addEventListener("click", Code.run);
+
     Toolbar.exampleElement = document.querySelector("#example");
     Toolbar.exampleElement.addEventListener("change", () => {
       Editor.setCode(Example.code());
