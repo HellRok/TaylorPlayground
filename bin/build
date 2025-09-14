@@ -16,5 +16,12 @@ end
 
 File.write(
   "app/javascripts/lib/example_data.ts",
-  "export const ExampleData = #{JSON.pretty_generate(examples)}",
-)
+  <<~TYPESCRIPT)
+    export const ExampleData = {
+      codeFor: (version: string, example: string) => ExampleData.data[version][example],
+      versions: () => Object.keys(ExampleData.data).reverse(),
+      examplesFor: (version: string) => Object.keys(ExampleData.data[version]),
+
+      data: #{JSON.pretty_generate(examples)},
+    }
+  TYPESCRIPT
