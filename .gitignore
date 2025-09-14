@@ -2,4 +2,4 @@ exports
 raw_assets
 dist
 node_modules
-app/javascripts/lib/example_data.js
+app/javascripts/lib/example_data.ts

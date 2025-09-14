@@ -16,7 +16,7 @@ describe("Toolbar", () => {
     expect(screen.getByTestId("share")).toBeDefined();
   });
 
-  xit("renders the version selector", () => {
+  it("renders the version selector", () => {
     render(<Toolbar />);
 
     expect(screen.getByTestId("version")).toBeDefined();

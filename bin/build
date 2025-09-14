@@ -15,6 +15,6 @@ Dir.glob("examples/v*/*.rb").each do |path|
 end
 
 File.write(
-  "app/javascripts/lib/example_data.js",
+  "app/javascripts/lib/example_data.ts",
   "export const ExampleData = #{JSON.pretty_generate(examples)}",
 )

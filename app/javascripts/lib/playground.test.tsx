@@ -31,12 +31,10 @@ describe("Playground", () => {
   xit("Loads welcome.rb for Taylor v0.14.3.1 by default", () => {
     render(<Playground />);
 
-    const versionSelector: HTMLSelectElement =
-      screen.getByTestId("version-selector");
+    const versionSelector: HTMLSelectElement = screen.getByTestId("version");
     expect(versionSelector.value).toEqual("v0.3.14.1");
 
-    const exampleSelector: HTMLSelectElement =
-      screen.getByTestId("example-selector");
+    const exampleSelector: HTMLSelectElement = screen.getByTestId("example");
     expect(exampleSelector.value).toEqual("welcome.rb");
   });
 });
