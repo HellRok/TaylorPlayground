@@ -1,7 +1,10 @@
+import { Toolbar } from "./toolbar";
+
 export function Playground() {
   return (
     <>
-      <h1 data-testid="playground">Playground</h1>
+      <Toolbar />
+      <div className="grid" data-testid="grid"></div>
     </>
-  )
+  );
 }

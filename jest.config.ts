@@ -19,5 +19,6 @@ module.exports = {
   testEnvironment: "jsdom",
   transform: {
     ...tsJestTransformCfg,
+    "^.+\\.(js|jsx)$": ["esbuild-jest"],
   },
 };

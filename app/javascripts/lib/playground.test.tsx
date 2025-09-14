@@ -1,26 +1,42 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+
 import { Playground } from "./playground";
 
 describe("Playground", () => {
-  // afterEach(() => {
-  //   document.body.innerHTML = "";
-  // });
+  it("renders the toolbar", () => {
+    render(<Playground />);
 
-  // beforeEach(() => {
-  //   const consoleElem = document.createElement("div");
-  //   consoleElem.setAttribute("id", "playground");
-  //   document.body.appendChild(consoleElem);
-  // });
+    expect(screen.getByTestId("toolbar")).toBeDefined();
+  });
 
-  describe(".view", () => {
-    it("renders stuff", () => {
+  describe("in the grid", () => {
+    xit("renders the editor", () => {
       render(<Playground />);
 
-      expect(screen.getByTestId("playground")).toHaveTextContent(
-        "Clicker clicked 0 times",
+      expect(screen.getByTestId("grid")).toContainElement(
+        screen.getByTestId("editor"),
       );
     });
+
+    xit("renders Taylor iframe", () => {
+      render(<Playground />);
+
+      expect(screen.getByTestId("grid")).toContainElement(
+        screen.getByTestId("taylor"),
+      );
+    });
+  });
+
+  xit("Loads welcome.rb for Taylor v0.14.3.1 by default", () => {
+    render(<Playground />);
+
+    const versionSelector: HTMLSelectElement =
+      screen.getByTestId("version-selector");
+    expect(versionSelector.value).toEqual("v0.3.14.1");
+
+    const exampleSelector: HTMLSelectElement =
+      screen.getByTestId("example-selector");
+    expect(exampleSelector.value).toEqual("welcome.rb");
   });
 });

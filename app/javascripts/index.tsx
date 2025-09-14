@@ -1,19 +1,19 @@
 import { Playground } from "./lib/playground";
 
-import { Toolbar } from "./lib/toolbar";
-import { Code } from "./lib/code";
-import { Editor } from "./lib/editor";
-import { Example } from "./lib/example";
-import { Version } from "./lib/version";
+// import { Toolbar } from "./lib/toolbar";
+// import { Code } from "./lib/code";
+// import { Editor } from "./lib/editor";
+// import { Example } from "./lib/example";
+// import { Version } from "./lib/version";
 
 import { createRoot } from "react-dom/client";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector("#playground")
+  const container = document.querySelector("#playground");
   const root = createRoot(container!);
   root.render(<Playground />);
 
-  Editor.setup();
+  // Editor.setup();
 
   // document.querySelector("#link").addEventListener("click", () => {
   //   generateLink();
@@ -35,18 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
   //   loadExample();
   // }
   // runCode();
-  Toolbar.setup();
+  // Toolbar.setup();
 
-  Code.setup();
-  Example.setup();
-  Version.setup();
-  Version.load();
+  // Code.setup();
+  // Example.setup();
+  // Version.setup();
+  // Version.load();
 
-  let code = Code.fromAnchor();
-  console.log(code);
+  // let code = Code.fromAnchor();
+  // console.log(code);
 
-  Editor.setCode(Example.code());
-  Code.run();
+  // Editor.setCode(Example.code());
+  // Code.run();
 });
 
 // function generateLink() {
