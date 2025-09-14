@@ -12,10 +12,10 @@ describe("Playground", () => {
 
   describe("in the grid", () => {
     it("renders the editor", () => {
-      render(<Playground />);
+      const { container } = render(<Playground />);
 
       expect(screen.getByTestId("grid")).toContainElement(
-        screen.getByTestId("editor"),
+        container.querySelector("#editor"),
       );
     });
 

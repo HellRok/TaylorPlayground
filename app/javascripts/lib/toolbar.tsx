@@ -5,7 +5,8 @@ import { Example } from "./example";
 import { ExampleData } from "./example_data";
 
 interface toolbarProps {
-  setCode: Dispatch<SetStateAction<string>>;
+  // This is gross, the second type is only for mocking in tests
+  setCode: Dispatch<SetStateAction<string>> | ((value: string) => void);
 }
 
 export function Toolbar({ setCode }: toolbarProps) {

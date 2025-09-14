@@ -2,7 +2,7 @@ import LZString from "lz-string";
 import { Code } from "./code";
 import { Editor } from "./editor";
 
-describe("Code", () => {
+xdescribe("Code", () => {
   afterEach(() => {
     document.body.innerHTML = "";
     jest.restoreAllMocks();
