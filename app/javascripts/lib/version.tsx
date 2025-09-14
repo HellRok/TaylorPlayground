@@ -5,7 +5,7 @@ import { ExampleData } from "./example_data";
 interface versionProps {
   version: string;
   setVersion: Dispatch<SetStateAction<string>>;
-  loadExample: (example: string) => void
+  loadExample: (example: string) => void;
 }
 
 export function Version({ version, setVersion, loadExample }: versionProps) {

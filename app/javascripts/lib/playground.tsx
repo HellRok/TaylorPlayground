@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Toolbar } from "./toolbar";
+import { Editor } from "./editor";
 
 export function Playground() {
   const [code, setCode] = useState("");
@@ -8,7 +9,9 @@ export function Playground() {
   return (
     <>
       <Toolbar setCode={setCode} />
-      <div className="grid" data-testid="grid"></div>
+      <div className="grid" data-testid="grid">
+        <Editor code={code} setCode={setCode} />
+      </div>
     </>
   );
 }

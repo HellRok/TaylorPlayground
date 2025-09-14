@@ -11,11 +11,12 @@ interface toolbarProps {
 export function Toolbar({ setCode }: toolbarProps) {
   const [version, setVersion] = useState("v0.4.0");
   const [example, setExample] = useState("welcome.rb");
+  setCode(ExampleData.codeFor(version, example));
 
-  const loadExample = (example : string) => {
+  const loadExample = (example: string) => {
     setExample(example);
     setCode(ExampleData.codeFor(version, example));
-  }
+  };
 
   return (
     <div className="toolbar" data-testid="toolbar">
@@ -24,11 +25,7 @@ export function Toolbar({ setCode }: toolbarProps) {
         setVersion={setVersion}
         loadExample={loadExample}
       />
-      <Example
-        version={version}
-        example={example}
-        loadExample={loadExample}
-      />
+      <Example version={version} example={example} loadExample={loadExample} />
       <a
         className="button"
         href="https://taylormadetech.dev/"
