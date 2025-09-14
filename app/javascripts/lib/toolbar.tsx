@@ -1,4 +1,5 @@
 import { Version } from "./version";
+import { Example } from "./example";
 
 // import { Code } from "./code";
 // import { Editor } from "./editor";
@@ -24,6 +25,7 @@ export function Toolbar() {
   return (
     <div className="toolbar" data-testid="toolbar">
       <Version />
+      <Example />
       <a
         className="button"
         href="https://taylormadetech.dev/"

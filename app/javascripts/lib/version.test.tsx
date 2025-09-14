@@ -16,6 +16,7 @@ describe("Version", () => {
     const optionElements: NodeListOf<HTMLOptionElement> = screen
       .getByTestId("version")
       .querySelectorAll("option");
+
     expect(Array.from(optionElements).map((elem) => elem.textContent)).toEqual([
       "v0.4.0",
       "v0.3.14.1",

@@ -22,7 +22,7 @@ describe("Toolbar", () => {
     expect(screen.getByTestId("version")).toBeDefined();
   });
 
-  xit("renders the example selector", () => {
+  it("renders the example selector", () => {
     render(<Toolbar />);
 
     expect(screen.getByTestId("example")).toBeDefined();
