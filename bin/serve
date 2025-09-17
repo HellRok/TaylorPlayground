@@ -14,22 +14,9 @@ build-assets() {
   npm run build
 }
 
-build-playground() {
-  taylor export
-  pushd exports
-  unzip "*-web-*.zip"
-  mv \
-    index.html \
-    playground.data \
-    playground.js \
-    playground.wasm \
-    ../dist/playground
-  popd
-}
-
 build() {
   build-assets
-  #build-playground
+  #bin/build-playground
 }
 
 serve() {

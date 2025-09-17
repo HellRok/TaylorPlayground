@@ -19,11 +19,11 @@ describe("Playground", () => {
       );
     });
 
-    xit("renders Taylor iframe", () => {
+    it("renders Taylor iframe", () => {
       render(<Playground />);
 
       expect(screen.getByTestId("grid")).toContainElement(
-        screen.getByTestId("taylor"),
+        screen.getByTestId("taylor-iframe"),
       );
     });
   });

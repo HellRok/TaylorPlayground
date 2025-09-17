@@ -1,9 +1,11 @@
 import esbuild from "esbuild";
 
+const environment = process.env.NODE_ENV;
+
 const options = {
   bundle: true,
-  format: "esm",
-  minify: true, // The build breaks without because of lezer
+  format: "iife",
+  minify: environment == "production",
   sourcemap: true,
   loader: {
     ".css": "css",
@@ -13,7 +15,7 @@ const options = {
   entryNames: "[name]",
   assetNames: "assets/[name]-[hash]",
   define: {
-    "process.env.NODE_ENV": '"production"',
+    "process.env.NODE_ENV": `"${environment}"`,
   },
   external: ["node_modules/*"],
   plugins: [],
@@ -37,7 +39,7 @@ esbuild
 esbuild
   .build({
     entryPoints: ["app/javascripts/shell.ts", "app/stylesheets/shell.css"],
-    outdir: "dist/playground",
+    outdir: "dist/",
     ...options,
   })
   .then(() => {

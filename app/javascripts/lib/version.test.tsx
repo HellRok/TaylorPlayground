@@ -22,11 +22,4 @@ describe("Version", () => {
       "v0.3.14.1",
     ]);
   });
-
-  it("selects the version passed in", () => {
-    render(<Version version="v0.3.14.1" />);
-
-    const version: HTMLSelectElement = screen.getByTestId("version");
-    expect(version.value).toEqual("v0.3.14.1");
-  });
 });

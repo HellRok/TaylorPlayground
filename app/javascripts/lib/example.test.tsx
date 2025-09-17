@@ -5,13 +5,13 @@ import { Example } from "./example";
 
 describe("Example", () => {
   it("renders a select element", () => {
-    render(<Example version="v0.4.0" />);
+    render(<Example />);
 
     expect(screen.getByTestId("example").tagName).toEqual("SELECT");
   });
 
   it("contains all the examples for the current version", () => {
-    render(<Example version="v0.4.0" />);
+    render(<Example />);
 
     const optionElements: NodeListOf<HTMLOptionElement> = screen
       .getByTestId("example")

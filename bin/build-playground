@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+version=$(jq --raw-output .version < taylor-config.json)
+
+echo "Building playground ${version}"
+
+if [[ ! -d dist/${version} ]]; then
+  mkdir dist/${version}
+fi
+
+taylor export
+pushd exports
+unzip "*-web-*.zip"
+mv \
+  index.html \
+  playground.data \
+  playground.js \
+  playground.wasm \
+  ../dist/${version}
+popd

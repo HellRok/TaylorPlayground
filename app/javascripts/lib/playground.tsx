@@ -1,17 +1,16 @@
-import { useState } from "react";
-
 import { Toolbar } from "./toolbar";
 import { Editor } from "./editor";
+import { Taylor } from "./taylor";
+import { StateProvider } from "./state";
 
 export function Playground() {
-  const [code, setCode] = useState("");
-
   return (
-    <>
-      <Toolbar setCode={setCode} />
+    <StateProvider>
+      <Toolbar />
       <div className="grid" data-testid="grid">
-        <Editor code={code} setCode={setCode} />
+        <Editor />
+        <Taylor />
       </div>
-    </>
+    </StateProvider>
   );
 }

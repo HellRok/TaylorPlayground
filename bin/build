@@ -20,6 +20,7 @@ File.write(
     export const ExampleData = {
       codeFor: (version: string, example: string) => ExampleData.data[version][example],
       versions: () => Object.keys(ExampleData.data).reverse(),
+      initialVersion: (): string => ExampleData.versions()[0],
       examplesFor: (version: string) => Object.keys(ExampleData.data[version]),
 
       data: #{JSON.pretty_generate(examples)},

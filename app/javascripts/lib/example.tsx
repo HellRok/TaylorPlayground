@@ -1,21 +1,18 @@
 import { ChangeEvent } from "react";
 
+import { useStateContext } from "./state";
 import { ExampleData } from "./example_data";
 
-interface exampleProps {
-  version: string;
-  example: string;
-  loadExample: (example: string) => void;
-}
+export function Example() {
+  const [state, dispatch] = useStateContext();
 
-export function Example({ version, example, loadExample }: exampleProps) {
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    loadExample(e.target.value);
+    dispatch({ type: 'setExample', example: e.target.value });
   };
 
   return (
-    <select data-testid="example" value={example} onChange={handleChange}>
-      {ExampleData.examplesFor(version).map((example, index) => (
+    <select data-testid="example" value={state.example} onChange={handleChange}>
+      {ExampleData.examplesFor(state.version).map((example, index) => (
         <option value={example} key={index}>
           {example}
         </option>

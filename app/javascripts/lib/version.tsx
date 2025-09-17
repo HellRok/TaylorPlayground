@@ -1,22 +1,17 @@
-import { Dispatch, SetStateAction, ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 
+import { useStateContext } from "./state";
 import { ExampleData } from "./example_data";
 
-interface versionProps {
-  version: string;
-  setVersion: Dispatch<SetStateAction<string>>;
-  loadExample: (example: string) => void;
-}
+export function Version() {
+  const [state, dispatch] = useStateContext();
 
-export function Version({ version, setVersion, loadExample }: versionProps) {
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const newVersion = e.target.value;
-    setVersion(newVersion);
-    loadExample("welcome.rb");
+    dispatch({ type: 'setVersion', version: e.target.value });
   };
 
   return (
-    <select data-testid="version" value={version} onChange={handleChange}>
+    <select data-testid="version" value={state.version} onChange={handleChange}>
       {ExampleData.versions().map((version, index) => (
         <option value={version} key={index}>
           {version}

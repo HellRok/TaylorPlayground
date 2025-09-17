@@ -4,8 +4,12 @@ import { render, screen } from "@testing-library/react";
 import { Toolbar } from "./toolbar";
 
 describe("Toolbar", () => {
+  let theVersion;
+  let theCode;
   const defaultProps = {
-    setCode: (value: string) => {},
+    version: "v0.4.0",
+    setVersion: (value: string) => { theVersion = value },
+    setCode: (value: string) => { theCode = value },
   };
 
   xit("renders the run button", () => {
