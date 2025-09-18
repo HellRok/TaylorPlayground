@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 
 import { Playground } from "./playground";
+import { hashParams } from "./hash_params";
 
 describe("Playground", () => {
   it("renders the toolbar", () => {
@@ -36,5 +37,13 @@ describe("Playground", () => {
 
     const exampleSelector: HTMLSelectElement = screen.getByTestId("example");
     expect(exampleSelector.value).toEqual("welcome.rb");
+
+    const taylorSelector: HTMLIFrameElement = screen.getByTestId("taylor-iframe");
+    const iframeUrl = new URL(taylorSelector.src);
+    expect(iframeUrl.pathname).toEqual("/v0.4.0/");
+
+    const params = hashParams.parse(iframeUrl.hash);
+    expect(params.console).toBe(true);
+    expect(params.code.length).toEqual(14);
   });
 });
