@@ -7,7 +7,7 @@ export function Version() {
   const [state, dispatch] = useStateContext();
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch({ type: 'setVersion', version: e.target.value });
+    dispatch({ type: "setVersion", version: e.target.value });
   };
 
   return (

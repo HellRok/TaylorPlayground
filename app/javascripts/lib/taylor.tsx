@@ -1,6 +1,6 @@
 import { useStateContext } from "./state";
-import { hashParams} from "./hash_params";
-import { TaylorIframe} from "./taylor_iframe";
+import { hashParams } from "./hash_params";
+import { TaylorIframe } from "./taylor_iframe";
 
 export function Taylor() {
   const [state, _] = useStateContext();
@@ -9,7 +9,5 @@ export function Taylor() {
     code: state.runningCode,
   });
 
-  return(
-    <TaylorIframe src={`/${state.version}/${params}`} />
-  );
+  return <TaylorIframe src={`/${state.version}/${params}`} />;
 }

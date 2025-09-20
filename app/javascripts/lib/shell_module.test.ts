@@ -21,9 +21,7 @@ describe("ShellModule", () => {
       expect(window.Module).toBeDefined();
       expect(window.Module.print).toBe(Console.log);
       expect(window.Module.printErr).toBe(Console.logError);
-      expect(window.Module.canvas).toBe(
-        document.querySelector("#canvas"),
-      );
+      expect(window.Module.canvas).toBe(document.querySelector("#canvas"));
     });
   });
 });

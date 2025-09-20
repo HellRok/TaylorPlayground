@@ -1,9 +1,9 @@
 import LZString from "lz-string";
 
 type HashParamsResult = {
-  code: string,
-  console: boolean,
-}
+  code: string;
+  console: boolean;
+};
 
 export const hashParams = {
   // This is a little naive but I control a lot of the data going in, so it
@@ -12,7 +12,7 @@ export const hashParams = {
     let result: HashParamsResult = {
       code: "",
       console: false,
-    }
+    };
 
     if (hash[0] === "#") {
       hash = hash.slice(1);
@@ -24,7 +24,7 @@ export const hashParams = {
       const key = part[0];
       const value = part[1];
       if (key === "console") {
-        result.console = true
+        result.console = true;
       }
 
       if (key === "code" && value) {

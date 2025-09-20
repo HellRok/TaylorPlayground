@@ -31,7 +31,9 @@ describe("hashParams", () => {
     });
 
     it("returns everything when present", () => {
-      expect(hashParams.parse("#console&code=MYGwhgzhAEBCCm8AOBueA7AJkA")).toEqual({
+      expect(
+        hashParams.parse("#console&code=MYGwhgzhAEBCCm8AOBueA7AJkA"),
+      ).toEqual({
         code: "class Beep;end",
         console: true,
       });
@@ -40,17 +42,21 @@ describe("hashParams", () => {
 
   describe(".generate", () => {
     it("has the code", () => {
-      expect(hashParams.generate({
-        code: "puts :blah",
-        console: false,
-      })).toEqual("#code=A4VwLgzgBAXARgGwIYAsg");
+      expect(
+        hashParams.generate({
+          code: "puts :blah",
+          console: false,
+        }),
+      ).toEqual("#code=A4VwLgzgBAXARgGwIYAsg");
     });
 
     it("adds the console", () => {
-      expect(hashParams.generate({
-        code: "p :beep",
-        console: true,
-      })).toEqual("#console&code=A4AgXARgplxA");
+      expect(
+        hashParams.generate({
+          code: "p :beep",
+          console: true,
+        }),
+      ).toEqual("#console&code=A4AgXARgplxA");
     });
   });
 });

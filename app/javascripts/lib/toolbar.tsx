@@ -6,15 +6,12 @@ export function Toolbar() {
   const [state, dispatch] = useStateContext();
 
   const handleClick = () => {
-    dispatch({type: "runCode"});
-  }
+    dispatch({ type: "runCode" });
+  };
 
   return (
     <div className="toolbar" data-testid="toolbar">
-      <button
-        id="run"
-        onClick={handleClick}
-      >
+      <button id="run" onClick={handleClick}>
         Run
       </button>
       <Version />

@@ -38,7 +38,8 @@ describe("Playground", () => {
     const exampleSelector: HTMLSelectElement = screen.getByTestId("example");
     expect(exampleSelector.value).toEqual("welcome.rb");
 
-    const taylorSelector: HTMLIFrameElement = screen.getByTestId("taylor-iframe");
+    const taylorSelector: HTMLIFrameElement =
+      screen.getByTestId("taylor-iframe");
     const iframeUrl = new URL(taylorSelector.src);
     expect(iframeUrl.pathname).toEqual("/v0.4.0/");
 

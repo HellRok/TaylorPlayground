@@ -9,7 +9,7 @@ export function Editor() {
   const [state, dispatch] = useStateContext();
 
   const handleChange = (newCode: string) => {
-    dispatch({ type: 'setCode', code: newCode });
+    dispatch({ type: "setCode", code: newCode });
   };
 
   return (
@@ -22,4 +22,4 @@ export function Editor() {
       extensions={[StreamLanguage.define(ruby)]}
     />
   );
-};
+}

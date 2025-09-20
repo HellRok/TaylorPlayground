@@ -7,7 +7,7 @@ export function Example() {
   const [state, dispatch] = useStateContext();
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch({ type: 'setExample', example: e.target.value });
+    dispatch({ type: "setExample", example: e.target.value });
   };
 
   return (

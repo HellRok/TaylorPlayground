@@ -1,26 +1,26 @@
-import { createContext, useContext, useReducer, ActionDispatch, PropsWithChildren } from 'react';
+import {
+  createContext,
+  useContext,
+  useReducer,
+  ActionDispatch,
+  PropsWithChildren,
+} from "react";
 
-import { initialState, StateAction, stateReducer, } from "./state_reducer";
+import { initialState, StateAction, stateReducer } from "./state_reducer";
 
-const StateContext = createContext<[
-  (typeof initialState),
-  ActionDispatch<[action: StateAction]>
-]>([
+const StateContext = createContext<
+  [typeof initialState, ActionDispatch<[action: StateAction]>]
+>([
   initialState,
-  (action: StateAction) => { action },
+  (action: StateAction) => {
+    action;
+  },
 ]);
 
 export function StateProvider({ children }: PropsWithChildren) {
-  const [state, dispatch] = useReducer(
-    stateReducer,
-    initialState
-  );
+  const [state, dispatch] = useReducer(stateReducer, initialState);
 
-  return (
-    <StateContext value={[state, dispatch]}>
-      {children}
-    </StateContext>
-  );
+  return <StateContext value={[state, dispatch]}>{children}</StateContext>;
 }
 
 export function useStateContext() {

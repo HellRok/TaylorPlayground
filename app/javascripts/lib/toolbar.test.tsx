@@ -35,14 +35,18 @@ describe("Toolbar", () => {
     render(
       <StateProvider>
         <Toolbar />
-      </StateProvider>
+      </StateProvider>,
     );
 
     const docLink: HTMLAnchorElement = screen.getByTestId("documentation");
-    expect(docLink.href).toEqual("https://taylormadetech.dev/documentation/taylor/v0.4.0/");
+    expect(docLink.href).toEqual(
+      "https://taylormadetech.dev/documentation/taylor/v0.4.0/",
+    );
 
     await user.selectOptions(screen.getByTestId("version"), "v0.3.14.1");
-    expect(docLink.href).toEqual("https://taylormadetech.dev/documentation/taylor/v0.3.14.1/");
+    expect(docLink.href).toEqual(
+      "https://taylormadetech.dev/documentation/taylor/v0.3.14.1/",
+    );
   });
 
   it("links to the Taylor website", () => {
