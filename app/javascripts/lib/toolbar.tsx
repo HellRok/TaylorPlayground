@@ -3,10 +3,20 @@ import { Version } from "./version";
 import { Example } from "./example";
 
 export function Toolbar() {
-  const [state, _] = useStateContext();
+  const [state, dispatch] = useStateContext();
+
+  const handleClick = () => {
+    dispatch({type: "runCode"});
+  }
 
   return (
     <div className="toolbar" data-testid="toolbar">
+      <button
+        id="run"
+        onClick={handleClick}
+      >
+        Run
+      </button>
       <Version />
       <Example />
       <a

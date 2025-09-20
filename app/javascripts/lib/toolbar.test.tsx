@@ -6,7 +6,7 @@ import { Toolbar } from "./toolbar";
 import { StateProvider } from "./state";
 
 describe("Toolbar", () => {
-  xit("renders the run button", () => {
+  it("renders the run button", () => {
     render(<Toolbar />);
 
     expect(screen.getByTestId("run")).toBeDefined();
