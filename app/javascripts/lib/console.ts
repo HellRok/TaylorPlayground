@@ -1,7 +1,10 @@
 export const Console = {
-  element: undefined,
+  element: document.createElement("div"),
   setup: () => {
-    Console.element = document.querySelector("#console");
+    const consoleElement = document.querySelector("#console") as HTMLDivElement;
+    if (consoleElement) {
+      Console.element = consoleElement;
+    }
   },
 
   show: () => {
@@ -12,7 +15,7 @@ export const Console = {
     Console.element.classList.add("hidden");
   },
 
-  log: (message) => {
+  log: (message: string) => {
     if (Console.element.textContent === "") {
       Console.element.textContent = message;
     } else {

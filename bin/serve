@@ -16,7 +16,7 @@ build-assets() {
 
 build() {
   build-assets
-  #bin/build-playground
+  bin/build-playground
 }
 
 serve() {

@@ -1,21 +1,20 @@
-import { Code } from "./lib/code";
 import { Console } from "./lib/console";
+import { hashParams } from "./lib/hash_params";
 import { ShellModule } from "./lib/shell_module";
 
 document.addEventListener("DOMContentLoaded", () => {
-  Code.setup();
-  Code.loadFromAnchor();
-
   ShellModule.attach();
 
   Console.setup();
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const showConsole = urlParams.get("console");
+  const params = hashParams.parse(window.location.hash);
 
-  if (showConsole) {
+  if (params.console) {
     Console.show();
   } else {
     Console.hide();
   }
+
+  const code = document.querySelector("#code") as HTMLTextAreaElement;
+  code.textContent = params.code;
 });
