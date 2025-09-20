@@ -5,18 +5,17 @@ describe("Console", () => {
     document.body.innerHTML = "";
   });
 
+  let consoleElem: HTMLTextAreaElement;
   beforeEach(() => {
-    const consoleElem = document.createElement("textarea");
+    consoleElem = document.createElement("textarea");
     consoleElem.setAttribute("id", "console");
     document.body.appendChild(consoleElem);
   });
 
   describe(".setup", () => {
     it("sets the element", () => {
-      expect(Console.element).toBeUndefined();
-
       Console.setup();
-      expect(Console.element).toBeDefined();
+      expect(Console.element).toBe(consoleElem);
     });
   });
 

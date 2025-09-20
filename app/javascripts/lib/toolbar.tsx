@@ -1,3 +1,4 @@
+import { cache } from "./cache";
 import { useStateContext } from "./state";
 import { Version } from "./version";
 import { Example } from "./example";
@@ -7,11 +8,12 @@ export function Toolbar() {
 
   const handleClick = () => {
     dispatch({ type: "runCode" });
+    cache.bump(state.runningCode);
   };
 
   return (
     <div className="toolbar" data-testid="toolbar">
-      <button id="run" onClick={handleClick}>
+      <button data-testid="run" onClick={handleClick}>
         Run
       </button>
       <Version />
