@@ -1,30 +1,30 @@
-import { hashParams } from "./hash_params";
+import { embedParams } from "./embed_params";
 
-describe("hashParams", () => {
+describe("embedParams", () => {
   describe(".parse", () => {
     it("returns the defaults when passed an empty string", () => {
-      expect(hashParams.parse("")).toEqual({
+      expect(embedParams.parse("")).toEqual({
         code: "",
         console: false,
       });
     });
 
     it("returns the defaults when passed just a #", () => {
-      expect(hashParams.parse("#")).toEqual({
+      expect(embedParams.parse("#")).toEqual({
         code: "",
         console: false,
       });
     });
 
     it("returns the console true when console is present", () => {
-      expect(hashParams.parse("#console")).toEqual({
+      expect(embedParams.parse("#console")).toEqual({
         code: "",
         console: true,
       });
     });
 
     it("returns the code when compressed code is present", () => {
-      expect(hashParams.parse("#code=A4VwLgzgBAXAFgUwDZIPZA")).toEqual({
+      expect(embedParams.parse("#code=A4VwLgzgBAXAFgUwDZIPZA")).toEqual({
         code: "puts :hello",
         console: false,
       });
@@ -32,7 +32,7 @@ describe("hashParams", () => {
 
     it("returns everything when present", () => {
       expect(
-        hashParams.parse("#console&code=MYGwhgzhAEBCCm8AOBueA7AJkA"),
+        embedParams.parse("#console&code=MYGwhgzhAEBCCm8AOBueA7AJkA"),
       ).toEqual({
         code: "class Beep;end",
         console: true,
@@ -43,7 +43,7 @@ describe("hashParams", () => {
   describe(".generate", () => {
     it("has the code", () => {
       expect(
-        hashParams.generate({
+        embedParams.generate({
           code: "puts :blah",
           console: false,
         }),
@@ -52,7 +52,7 @@ describe("hashParams", () => {
 
     it("adds the console", () => {
       expect(
-        hashParams.generate({
+        embedParams.generate({
           code: "p :beep",
           console: true,
         }),

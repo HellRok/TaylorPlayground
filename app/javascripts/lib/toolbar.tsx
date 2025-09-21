@@ -1,20 +1,34 @@
+import { Dispatch, SetStateAction } from "react";
+
 import { cache } from "./cache";
 import { useStateContext } from "./state";
 import { Version } from "./version";
 import { Example } from "./example";
 
-export function Toolbar() {
+interface ToolbarProps {
+  showShare: boolean;
+  setShowShare: Dispatch<SetStateAction<boolean>>;
+}
+
+export function Toolbar({ showShare, setShowShare }: ToolbarProps) {
   const [state, dispatch] = useStateContext();
 
-  const handleClick = () => {
+  const handleRunClick = () => {
     dispatch({ type: "runCode" });
     cache.bump(state.runningCode);
   };
 
+  const handleShareClick = () => {
+    setShowShare(!showShare);
+  };
+
   return (
     <div className="toolbar" data-testid="toolbar">
-      <button data-testid="run" onClick={handleClick}>
+      <button data-testid="run" onClick={handleRunClick}>
         Run
+      </button>
+      <button data-testid="share" onClick={handleShareClick}>
+        Share
       </button>
       <Version />
       <Example />

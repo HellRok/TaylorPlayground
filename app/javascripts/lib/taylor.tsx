@@ -1,11 +1,11 @@
 import { cache } from "./cache";
 import { useStateContext } from "./state";
-import { hashParams } from "./hash_params";
+import { embedParams } from "./embed_params";
 import { TaylorIframe } from "./taylor_iframe";
 
 export function Taylor() {
   const [state, _] = useStateContext();
-  const params = hashParams.generate({
+  const params = embedParams.generate({
     console: true,
     code: state.runningCode,
   });

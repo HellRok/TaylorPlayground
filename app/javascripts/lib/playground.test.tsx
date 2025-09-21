@@ -1,8 +1,9 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { Playground } from "./playground";
-import { hashParams } from "./hash_params";
+import { embedParams } from "./embed_params";
 
 describe("Playground", () => {
   it("renders the toolbar", () => {
@@ -13,10 +14,10 @@ describe("Playground", () => {
 
   describe("in the grid", () => {
     it("renders the editor", () => {
-      const { container } = render(<Playground />);
+      render(<Playground />);
 
       expect(screen.getByTestId("grid")).toContainElement(
-        container.querySelector("#editor"),
+        document.querySelector("#editor"),
       );
     });
 
@@ -43,8 +44,22 @@ describe("Playground", () => {
     const iframeUrl = new URL(taylorSelector.src);
     expect(iframeUrl.pathname).toEqual("/v0.4.0/");
 
-    const params = hashParams.parse(iframeUrl.hash);
+    const params = embedParams.parse(iframeUrl.hash);
     expect(params.console).toBe(true);
     expect(params.code.length).toEqual(14);
+  });
+
+  it("changes to share when the share button is clicked", async () => {
+    const user = userEvent.setup();
+    render(<Playground />);
+
+    expect(document.querySelector("#editor")).toBeInTheDocument();
+    expect(screen.queryByTestId("share-form")).not.toBeInTheDocument();
+
+    const shareButton: HTMLButtonElement = screen.getByTestId("share");
+    await user.click(shareButton);
+
+    expect(document.querySelector("#editor")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("share-form")).toBeInTheDocument();
   });
 });

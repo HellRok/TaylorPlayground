@@ -1,15 +1,15 @@
 import LZString from "lz-string";
 
-type HashParamsResult = {
+type EmbedParamsResult = {
   code: string;
   console: boolean;
 };
 
-export const hashParams = {
+export const embedParams = {
   // This is a little naive but I control a lot of the data going in, so it
   // should be pretty safe.
-  parse: (hash: string): HashParamsResult => {
-    let result: HashParamsResult = {
+  parse: (hash: string): EmbedParamsResult => {
+    let result: EmbedParamsResult = {
       code: "",
       console: false,
     };
@@ -35,7 +35,7 @@ export const hashParams = {
     return result;
   },
 
-  generate: (params: HashParamsResult): string => {
+  generate: (params: EmbedParamsResult): string => {
     let parts: string[] = [];
 
     if (params.console) {

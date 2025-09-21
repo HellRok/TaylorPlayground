@@ -1,5 +1,5 @@
 import { Console } from "./lib/console";
-import { hashParams } from "./lib/hash_params";
+import { embedParams } from "./lib/embed_params";
 import { ShellModule } from "./lib/shell_module";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   Console.setup();
 
-  const params = hashParams.parse(window.location.hash);
+  const params = embedParams.parse(window.location.hash);
 
   if (params.console) {
     Console.show();

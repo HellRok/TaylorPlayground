@@ -5,27 +5,32 @@ import userEvent from "@testing-library/user-event";
 import { Toolbar } from "./toolbar";
 import { StateProvider } from "./state";
 
+const ToolbarProps = {
+  showShare: false,
+  setShowShare: () => {},
+}
+
 describe("Toolbar", () => {
   it("renders the run button", () => {
-    render(<Toolbar />);
+    render(<Toolbar { ...ToolbarProps } />);
 
     expect(screen.getByTestId("run")).toBeDefined();
   });
 
   xit("renders the share button", () => {
-    render(<Toolbar />);
+    render(<Toolbar { ...ToolbarProps } />);
 
     expect(screen.getByTestId("share")).toBeDefined();
   });
 
   it("renders the version selector", () => {
-    render(<Toolbar />);
+    render(<Toolbar { ...ToolbarProps } />);
 
     expect(screen.getByTestId("version")).toBeDefined();
   });
 
   it("renders the example selector", () => {
-    render(<Toolbar />);
+    render(<Toolbar { ...ToolbarProps } />);
 
     expect(screen.getByTestId("example")).toBeDefined();
   });
@@ -34,7 +39,7 @@ describe("Toolbar", () => {
     const user = userEvent.setup();
     render(
       <StateProvider>
-        <Toolbar />
+        <Toolbar { ...ToolbarProps } />
       </StateProvider>,
     );
 
@@ -50,7 +55,7 @@ describe("Toolbar", () => {
   });
 
   it("links to the Taylor website", () => {
-    render(<Toolbar />);
+    render(<Toolbar { ...ToolbarProps } />);
 
     const taylorLink: HTMLAnchorElement = screen.getByTestId("taylor");
     expect(taylorLink.href).toEqual("https://taylormadetech.dev/");
