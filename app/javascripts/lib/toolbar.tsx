@@ -24,10 +24,10 @@ export function Toolbar({ showShare, setShowShare }: ToolbarProps) {
 
   return (
     <div className="toolbar" data-testid="toolbar">
-      <button data-testid="run" onClick={handleRunClick}>
+      <button data-testid="run" className="green" onClick={handleRunClick}>
         Run
       </button>
-      <button data-testid="share" onClick={handleShareClick}>
+      <button data-testid="share" className="blue" onClick={handleShareClick}>
         {showShare ? "Edit" : "Share"}
       </button>
       <Version />

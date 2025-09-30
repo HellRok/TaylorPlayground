@@ -100,7 +100,7 @@ iframe {
 
 /* Toolbar */
 .toolbar {
-  padding: 1px;
+  padding: 2px;
   height: var(--toolbar-height);
   text-align: center;
   background: var(--bg0);
@@ -124,7 +124,13 @@ label.checkbox {
   background: var(--bg0);
   border: 2px solid var(--light_grey);
   border-radius: 0;
-  margin: 2px;
+  margin: 0 4px;
+}
+
+.toolbar button,
+.toolbar select,
+.toolbar .button {
+  margin: 0 4px !important;
 }
 
 label.checkbox input[type="checkbox"] {
@@ -190,6 +196,7 @@ a.button:visited {
 
 .link-form input {
   flex: 1;
+  margin-right: -2px;
 }
 .link-form .copy-button {
   width: 100px;
