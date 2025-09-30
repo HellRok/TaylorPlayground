@@ -1,14 +1,18 @@
 import { ExampleData } from "./example_data";
+import { playgroundParams } from "./playground_params";
+
+const params = playgroundParams.parse(window.location.hash);
 
 const defaultExample = "welcome.rb";
 export const initialState = {
-  version: ExampleData.initialVersion(),
-  example: defaultExample,
-  code: ExampleData.codeFor(ExampleData.initialVersion(), defaultExample),
-  runningCode: ExampleData.codeFor(
-    ExampleData.initialVersion(),
-    defaultExample,
-  ),
+  version: params.version || ExampleData.initialVersion(),
+  example: params.code ? "custom.rb" : defaultExample,
+  code:
+    params.code ||
+    ExampleData.codeFor(ExampleData.initialVersion(), defaultExample),
+  runningCode:
+    params.code ||
+    ExampleData.codeFor(ExampleData.initialVersion(), defaultExample),
 };
 
 type SetVersionAction = {

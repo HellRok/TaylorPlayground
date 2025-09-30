@@ -6,29 +6,30 @@ type PlaygroundParamsResult = {
 };
 
 export const playgroundParams = {
-  // parse: (hash: string): PlaygroundParamsResult => {
-  //   let result: PlaygroundParamsResult = {
-  //     version: "",
-  //     code: "",
-  //   };
+  parse: (hash: string): PlaygroundParamsResult => {
+    let result: PlaygroundParamsResult = {
+      version: "",
+      code: "",
+    };
 
-  //   if (hash[0] === "#") {
-  //     hash = hash.slice(1);
-  //   }
+    if (hash[0] === "#") {
+      hash = hash.slice(1);
+    }
 
-  //   const parts = hash.split("&").map((part) => part.split("="));
+    const hashParams = new URLSearchParams(hash);
 
-  //   parts.forEach((part) => {
-  //     const key = part[0];
-  //     const value = part[1];
+    for (const [key, value] of hashParams) {
+      if (key === "version" && value) {
+        result.version = value;
+      }
 
-  //     if (key === "code" && value) {
-  //       result.code = LZString.decompressFromEncodedURIComponent(value);
-  //     }
-  //   });
+      if (key === "code" && value) {
+        result.code = LZString.decompressFromEncodedURIComponent(value);
+      }
+    }
 
-  //   return result;
-  // },
+    return result;
+  },
 
   generateUrl: ({ version, code }: PlaygroundParamsResult): string => {
     let parts: string[] = [];
