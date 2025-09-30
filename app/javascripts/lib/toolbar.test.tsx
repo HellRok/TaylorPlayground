@@ -17,7 +17,7 @@ describe("Toolbar", () => {
     expect(screen.getByTestId("run")).toBeDefined();
   });
 
-  xit("renders the share button", () => {
+  it("renders the share button", () => {
     render(<Toolbar {...ToolbarProps} />);
 
     expect(screen.getByTestId("share")).toBeDefined();
