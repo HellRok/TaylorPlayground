@@ -1,4 +1,4 @@
-/* TODO: Move to top Taylor */
+/* General */
 :root {
   --toolbar-height: 50px;
 }
@@ -61,7 +61,6 @@
 * {
   box-sizing: border-box;
 }
-/* END */
 
 body {
   margin: 0;
@@ -77,7 +76,27 @@ body {
 
 .grid > div {
   height: calc(100vh - var(--toolbar-height));
+  overflow-y: scroll;
 }
+
+.green {
+  border-color: var(--green);
+}
+
+.blue {
+  border-color: var(--blue);
+}
+
+.hidden {
+  display: none;
+}
+
+iframe {
+  height: 100%;
+  width: 100%;
+  border: none;
+}
+/* END */
 
 /* Toolbar */
 .toolbar {
@@ -90,24 +109,26 @@ body {
 .examples {
   display: inline-block;
 }
+/* END */
 
-.green {
-  border-color: var(--green);
-}
-
-.blue {
-  border-color: var(--blue);
-}
-
+/* Forms */
 button,
 select,
-a.button {
+a.button,
+input,
+textarea,
+label.checkbox {
   display: inline;
   padding: 10px;
   color: var(--fg);
   background: var(--bg0);
   border: 2px solid var(--light_grey);
   border-radius: 0;
+  margin: 2px;
+}
+
+label.checkbox input[type="checkbox"] {
+  margin-right: 10px;
 }
 
 button:hover,
@@ -129,14 +150,49 @@ a.button:visited {
   color: var(--fg);
 }
 
-.hidden {
-  display: none;
+.link-form,
+.embed-form {
+  max-width: 500px;
+  margin: 10px auto;
 }
 
-iframe {
-  height: 100%;
+.embed-form label {
+  margin: 3px auto;
+  width: 200px;
+  display: block;
+}
+
+.embed-form label:not(.checkbox) {
+  text-align: right;
+  overflow: auto;
+}
+
+.embed-form input[type="text"] {
+  width: 100px;
+  margin-left: 10px;
+}
+
+.embed-form textarea {
+  display: block;
   width: 100%;
-  border: none;
+  height: 100px;
+}
+
+.embed-form .copy-button {
+  display: block;
+  margin: 10px auto;
+  width: 100px;
+}
+
+.link-form {
+  display: flex;
+}
+
+.link-form input {
+  flex: 1;
+}
+.link-form .copy-button {
+  width: 100px;
 }
 
 /* CodeMirror Tweaks */

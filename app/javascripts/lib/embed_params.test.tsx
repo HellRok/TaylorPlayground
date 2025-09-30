@@ -40,23 +40,36 @@ describe("embedParams", () => {
     });
   });
 
-  describe(".generate", () => {
-    it("has the code", () => {
+  describe(".generateUrl", () => {
+    it("has the code and version", () => {
       expect(
-        embedParams.generate({
+        embedParams.generateUrl({
+          version: "the-version",
           code: "puts :blah",
           console: false,
         }),
-      ).toEqual("#code=A4VwLgzgBAXARgGwIYAsg");
+      ).toEqual("http://localhost/the-version#code=A4VwLgzgBAXARgGwIYAsg");
     });
 
     it("adds the console", () => {
       expect(
-        embedParams.generate({
+        embedParams.generateUrl({
+          version: "the-version",
           code: "p :beep",
           console: true,
         }),
-      ).toEqual("#console&code=A4AgXARgplxA");
+      ).toEqual("http://localhost/the-version#console&code=A4AgXARgplxA");
+    });
+
+    it("adds the cache buster", () => {
+      expect(
+        embedParams.generateUrl({
+          version: "the-version",
+          code: "p :beep",
+          console: true,
+          cacheBust: 1,
+        }),
+      ).toEqual("http://localhost/the-version?c=1#console&code=A4AgXARgplxA");
     });
   });
 });

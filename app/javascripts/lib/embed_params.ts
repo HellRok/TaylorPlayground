@@ -1,8 +1,10 @@
 import LZString from "lz-string";
 
 type EmbedParamsResult = {
+  version: string;
   code: string;
   console: boolean;
+  cacheBust?: number;
 };
 
 export const embedParams = {
@@ -35,15 +37,31 @@ export const embedParams = {
     return result;
   },
 
-  generate: (params: EmbedParamsResult): string => {
+  generateUrl: ({
+    version,
+    code,
+    console,
+    cacheBust,
+  }: EmbedParamsResult): string => {
     let parts: string[] = [];
 
-    if (params.console) {
+    if (console) {
       parts.push("console");
     }
 
-    parts.push(`code=${LZString.compressToEncodedURIComponent(params.code)}`);
+    parts.push(`code=${LZString.compressToEncodedURIComponent(code)}`);
 
-    return `#${parts.join("&")}`;
+    let url = new URL(window.location.href);
+    url.pathname = `/${version}`;
+
+    let searchParams = new URLSearchParams();
+    if (cacheBust) {
+      searchParams.append("c", cacheBust.toString());
+    }
+
+    url.search = searchParams.toString();
+    url.hash = `#${parts.join("&")}`;
+
+    return url.href;
   },
 };

@@ -2,11 +2,13 @@ import esbuild from "esbuild";
 
 const environment = process.env.NODE_ENV;
 
+const isProduction = environment === "production";
+
 const options = {
   bundle: true,
   format: "iife",
-  minify: environment == "production",
-  sourcemap: true,
+  minify: isProduction,
+  sourcemap: !isProduction,
   loader: {
     ".css": "css",
     ".html": "copy",

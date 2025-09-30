@@ -28,7 +28,7 @@ export function Toolbar({ showShare, setShowShare }: ToolbarProps) {
         Run
       </button>
       <button data-testid="share" onClick={handleShareClick}>
-        Share
+        {showShare ? "Edit" : "Share"}
       </button>
       <Version />
       <Example />

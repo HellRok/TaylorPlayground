@@ -13,7 +13,7 @@ describe("ShareForm", () => {
       </StateProvider>,
     );
 
-    const copyField: HTMLInputElement =  screen.getByTestId("copy-form-field");
+    const copyField: HTMLInputElement = screen.getByTestId("copy-form-field");
     expect(copyField).toBeInTheDocument();
     expect(copyField.value).toEqual("snthsnth");
     expect(screen.getByTestId("copy-form-button")).toBeInTheDocument();
