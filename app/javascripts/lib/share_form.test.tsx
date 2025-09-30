@@ -14,8 +14,8 @@ describe("ShareForm", () => {
     );
 
     const copyField: HTMLInputElement = screen.getByTestId("copy-form-field");
-    expect(copyField).toBeInTheDocument();
-    expect(copyField.value).toEqual("snthsnth");
-    expect(screen.getByTestId("copy-form-button")).toBeInTheDocument();
+    expect(copyField.value).toEqual(
+      "http://localhost/#version=v0.4.0&code=A4VwLgzgBARAEgUwDZIPYEIYCgg",
+    );
   });
 });

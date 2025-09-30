@@ -32,7 +32,7 @@ describe("embedParams", () => {
 
     it("returns everything when present", () => {
       expect(
-        embedParams.parse("#console&code=MYGwhgzhAEBCCm8AOBueA7AJkA"),
+        embedParams.parse("#console=&code=MYGwhgzhAEBCCm8AOBueA7AJkA"),
       ).toEqual({
         code: "class Beep;end",
         console: true,
@@ -58,7 +58,7 @@ describe("embedParams", () => {
           code: "p :beep",
           console: true,
         }),
-      ).toEqual("http://localhost/the-version#console&code=A4AgXARgplxA");
+      ).toEqual("http://localhost/the-version#console=&code=A4AgXARgplxA");
     });
 
     it("adds the cache buster", () => {
@@ -69,7 +69,7 @@ describe("embedParams", () => {
           console: true,
           cacheBust: 1,
         }),
-      ).toEqual("http://localhost/the-version?c=1#console&code=A4AgXARgplxA");
+      ).toEqual("http://localhost/the-version?c=1#console=&code=A4AgXARgplxA");
     });
   });
 });

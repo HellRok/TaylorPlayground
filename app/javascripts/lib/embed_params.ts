@@ -1,6 +1,11 @@
 import LZString from "lz-string";
 
 type EmbedParamsResult = {
+  code: string;
+  console: boolean;
+};
+
+type EmbedParams = {
   version: string;
   code: string;
   console: boolean;
@@ -8,8 +13,6 @@ type EmbedParamsResult = {
 };
 
 export const embedParams = {
-  // This is a little naive but I control a lot of the data going in, so it
-  // should be pretty safe.
   parse: (hash: string): EmbedParamsResult => {
     let result: EmbedParamsResult = {
       code: "",
@@ -20,11 +23,9 @@ export const embedParams = {
       hash = hash.slice(1);
     }
 
-    const parts = hash.split("&").map((part) => part.split("="));
+    const hashParams = new URLSearchParams(hash);
 
-    parts.forEach((part) => {
-      const key = part[0];
-      const value = part[1];
+    for (const [key, value] of hashParams) {
       if (key === "console") {
         result.console = true;
       }
@@ -32,24 +33,19 @@ export const embedParams = {
       if (key === "code" && value) {
         result.code = LZString.decompressFromEncodedURIComponent(value);
       }
-    });
+    }
 
     return result;
   },
 
-  generateUrl: ({
-    version,
-    code,
-    console,
-    cacheBust,
-  }: EmbedParamsResult): string => {
-    let parts: string[] = [];
+  generateUrl: ({ version, code, console, cacheBust }: EmbedParams): string => {
+    let hashParams = new URLSearchParams();
 
     if (console) {
-      parts.push("console");
+      hashParams.append("console", "");
     }
 
-    parts.push(`code=${LZString.compressToEncodedURIComponent(code)}`);
+    hashParams.append("code", LZString.compressToEncodedURIComponent(code));
 
     let url = new URL(window.location.href);
     url.pathname = `/${version}`;
@@ -60,7 +56,7 @@ export const embedParams = {
     }
 
     url.search = searchParams.toString();
-    url.hash = `#${parts.join("&")}`;
+    url.hash = hashParams.toString();
 
     return url.href;
   },

@@ -7,7 +7,7 @@ import { Taylor } from "./taylor";
 import { Toolbar } from "./toolbar";
 
 export function Playground() {
-  const [showShare, setShowShare] = useState(true);
+  const [showShare, setShowShare] = useState(false);
 
   return (
     <StateProvider>

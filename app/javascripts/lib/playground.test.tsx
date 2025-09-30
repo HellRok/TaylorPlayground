@@ -42,7 +42,7 @@ describe("Playground", () => {
     const taylorSelector: HTMLIFrameElement =
       screen.getByTestId("taylor-iframe");
     const iframeUrl = new URL(taylorSelector.src);
-    expect(iframeUrl.pathname).toEqual("/v0.4.0/");
+    expect(iframeUrl.pathname).toEqual("/v0.4.0");
 
     const params = embedParams.parse(iframeUrl.hash);
     expect(params.console).toBe(true);
