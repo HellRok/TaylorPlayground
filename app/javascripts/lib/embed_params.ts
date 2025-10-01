@@ -48,7 +48,7 @@ export const embedParams = {
     hashParams.append("code", LZString.compressToEncodedURIComponent(code));
 
     let url = new URL(window.location.href);
-    url.pathname = `/${version}`;
+    url.pathname = `/${version}/`;
 
     let searchParams = new URLSearchParams();
     if (cacheBust) {

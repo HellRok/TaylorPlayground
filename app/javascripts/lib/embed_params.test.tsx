@@ -48,7 +48,7 @@ describe("embedParams", () => {
           code: "puts :blah",
           console: false,
         }),
-      ).toEqual("http://localhost/the-version#code=A4VwLgzgBAXARgGwIYAsg");
+      ).toEqual("http://localhost/the-version/#code=A4VwLgzgBAXARgGwIYAsg");
     });
 
     it("adds the console", () => {
@@ -58,7 +58,7 @@ describe("embedParams", () => {
           code: "p :beep",
           console: true,
         }),
-      ).toEqual("http://localhost/the-version#console=&code=A4AgXARgplxA");
+      ).toEqual("http://localhost/the-version/#console=&code=A4AgXARgplxA");
     });
 
     it("adds the cache buster", () => {
@@ -69,7 +69,7 @@ describe("embedParams", () => {
           console: true,
           cacheBust: 1,
         }),
-      ).toEqual("http://localhost/the-version?c=1#console=&code=A4AgXARgplxA");
+      ).toEqual("http://localhost/the-version/?c=1#console=&code=A4AgXARgplxA");
     });
   });
 });

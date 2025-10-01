@@ -8,7 +8,7 @@ export function ShareForm() {
   const isCodeDifferentFromRunning = state.runningCode != state.code;
 
   return (
-    <div data-testid="share-form">
+    <div data-testid="share-form" className="share-form">
       {isCodeDifferentFromRunning ? (
         <fieldset className="warning">
           <legend>Warning!</legend>

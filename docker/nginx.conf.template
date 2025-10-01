@@ -1,0 +1,30 @@
+daemon off;
+
+# Set number of worker processes automatically based on number of CPU cores.
+worker_processes auto;
+
+# Enables the use of JIT for regular expressions to speed-up their processing.
+pcre_jit on;
+
+# Configures default error logger.
+error_log /dev/stdout info;
+
+events {
+  # The maximum number of simultaneous connections that can be opened by
+  # a worker process.
+  worker_connections 1024;
+}
+
+http {
+  server {
+    if ($http_x_forwarded_proto = "http") {
+      return 301 https://$host$request_uri;
+    }
+
+    include /etc/nginx/mime.types;
+    listen $PORT;
+    root /app/html/;
+    index index.html;
+    access_log /dev/stdout;
+  }
+}

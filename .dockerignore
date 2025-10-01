@@ -1,0 +1,14 @@
+Dockerfile
+.git
+.gitignore
+
+dist
+.DS_Store
+dump
+exports
+meta.json
+node_modules
+.ruby-lsp
+tags
+.tool-versions
+vendor

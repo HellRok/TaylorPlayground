@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+rm -rf ./dist/v*
+temp_dir=$(mktemp -d)
+
+docker build --target=final --output type=local,dest=${temp_dir} .
+
+mv ${temp_dir}/app/html/v* ./dist/
+rm -rf ${temp_dir}

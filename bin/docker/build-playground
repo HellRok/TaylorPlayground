@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+apt-get install git unzip -y
+
+pushd /app/game/
+cd /app/export
+./entrypoint.sh
+cd /app/game/exports
+unzip *.zip
+rm *.zip

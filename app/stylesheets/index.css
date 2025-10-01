@@ -76,7 +76,6 @@ body {
 
 .grid > div {
   height: calc(100vh - var(--toolbar-height));
-  overflow-y: scroll;
 }
 
 .green {
@@ -112,6 +111,10 @@ iframe {
 /* END */
 
 /* Forms */
+.share-form {
+  overflow-y: auto;
+}
+
 button,
 select,
 a.button,

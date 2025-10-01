@@ -2,17 +2,18 @@
 
 require "json"
 
-examples = {}
+def read_all(files)
+  result = {}
+  Dir.glob(files).each { |file|
+    result[File.basename(file)] = File.read(file)
+  }
 
-# Eventually consider moving this to JSON files split by version and loaded on
-# demand, for now though, one big Javascript file for simplicity.
-Dir.glob("examples/v*/*.rb").each do |path|
-  _, version, example = path.split("/")
-
-  puts "Processing '#{path}'"
-  examples[version] ||= {}
-  examples[version][example] = File.read(path)
+  result
 end
+
+examples = {
+  "v0.3.14.1" => read_all("app/playgrounds/v0.3/examples/*.rb")
+}
 
 File.write(
   "app/javascripts/lib/example_data.ts",
