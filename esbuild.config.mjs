@@ -1,7 +1,9 @@
 import esbuild from "esbuild";
+import fs from 'node:fs'
+import path from 'node:path'
 
+const workspace = process.cwd();
 const environment = process.env.NODE_ENV;
-
 const isProduction = environment === "production";
 
 const options = {
@@ -21,6 +23,7 @@ const options = {
   },
   external: ["node_modules/*"],
   plugins: [],
+  metafile: true,
 };
 
 esbuild
@@ -33,10 +36,17 @@ esbuild
     outdir: "dist",
     ...options,
   })
-  .then(() => {
+  .then((result) => {
+    fs.writeFileSync(
+      path.join(workspace, "./meta.json"),
+      JSON.stringify(result.metafile),
+    )
     console.log("Playground build complete.");
   })
-  .catch(() => process.exit(1));
+  .catch((error) => {
+    console.log(error);
+    process.exit(1);
+  });
 
 esbuild
   .build({
