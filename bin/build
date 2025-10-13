@@ -12,7 +12,8 @@ def read_all(files)
 end
 
 examples = {
-  "v0.3.14.1" => read_all("app/playgrounds/v0.3/examples/*.rb")
+  "v0.4.0" => read_all("app/playgrounds/v0.4/examples/*.rb"),
+  "v0.3.14.1" => read_all("app/playgrounds/v0.3/examples/*.rb"),
 }
 
 File.write(
@@ -20,7 +21,7 @@ File.write(
   <<~TYPESCRIPT)
     export const ExampleData = {
       codeFor: (version: string, example: string) => ExampleData.data[version][example],
-      versions: () => Object.keys(ExampleData.data).reverse(),
+      versions: () => Object.keys(ExampleData.data),
       initialVersion: (): string => ExampleData.versions()[0],
       examplesFor: (version: string) => Object.keys(ExampleData.data[version]),
 

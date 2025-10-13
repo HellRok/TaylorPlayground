@@ -30,6 +30,17 @@ COPY app/playgrounds/assets /app/game/assets/
 
 RUN /app/game/build-playground
 
+# Playground v0.4.0
+FROM hellrok/taylor:web-v0.4.0 AS playground-v0.4.0
+WORKDIR /app
+COPY app/playgrounds/v0.4 \
+  bin/docker/build-playground \
+  /app/game/
+
+COPY app/playgrounds/assets /app/game/assets/
+
+RUN /app/game/build-playground
+
 # Final result
 FROM debian:latest AS final
 RUN apt-get update && \
@@ -47,5 +58,6 @@ RUN mkdir -p /app/log/
 COPY --from=website /app/dist /app/html/
 
 COPY --from=playground-v0.3.14.1 /app/game/exports /app/html/v0.3.14.1/
+COPY --from=playground-v0.4.0 /app/game/exports /app/html/v0.4.0
 
 CMD ["/app/start_server.sh"]

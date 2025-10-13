@@ -9,14 +9,9 @@ setup-folders() {
   mkdir -p dist/playground
 }
 
-build-assets() {
+build() {
   ./bin/build
   npm run build
-}
-
-build() {
-  build-assets
-  #bin/build-playground
 }
 
 serve() {
