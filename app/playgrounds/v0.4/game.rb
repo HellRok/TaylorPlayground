@@ -3,23 +3,25 @@ $: << './vendor'
 
 puts "INFO: Playground made using Taylor v#{TAYLOR_VERSION}"
 
-def error_main
-  Window.draw do
+$main = -> {}
+$original_main_loop = Browser.method(:main_loop=).to_proc
 
-    clear
-    Font.default.draw(
-      $error.message,
-      x: 10, y: 10,
-      sizing: 20,
-      colour: Colour::RED
-    )
-    Font.default.draw(
-      $error.backtrace.join("\n"),
-      x: 10, y: 30,
-      sizing: 20,
-      colour: Colour::BLACK
-    ) unless $error.backtrace.nil?
+module Browser
+  def self.main_loop=(method)
+    $main = method(method)
+    $original_main_loop.call("__playground_main")
   end
+end
+
+def __playground_main
+  $main.call
+rescue StandardError => error
+  puts "trace (most recent call last):"
+  puts error.backtrace.reverse.map.with_index { |line, index|
+    "\t[#{error.backtrace.size - index}] #{line}"
+  }.join("\n") if error.backtrace
+  puts "#{error} (#{error.class})"
+  Browser.cancel_main_loop
 end
 
 def fetch_code
@@ -30,19 +32,4 @@ def fetch_code
 end
 
 fetch_code
-
-begin
-  require %q(./example)
-rescue SyntaxError, StandardError => error
-  $error = error
-  puts $error.message
-  puts $error.backtrace unless $error.backtrace.nil?
-
-  unless Window.ready?
-    Window.open(width: 800, height: 480, title: "Error!")
-    Window.target_frame_rate = 30
-  end
-
-  Browser.cancel_main_loop
-  Browser.main_loop = 'error_main'
-end
+require %q(./example)

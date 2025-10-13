@@ -3,12 +3,22 @@ $: << './vendor'
 
 puts "INFO: Playground made using Taylor v#{TAYLOR_VERSION}"
 
-def error_main
-  drawing do
-    clear
-    draw_text($error.message, 10, 10, 20, RED)
-    draw_text($error.backtrace.join("\n"), 10, 30, 20, BLACK) unless $error.backtrace.nil?
-  end
+$main = -> {}
+$original_main_loop = method(:set_main_loop).to_proc
+
+def set_main_loop(method)
+  $main = method(method)
+  $original_main_loop.call("__playground_main")
+end
+
+def __playground_main
+  $main.call
+rescue StandardError => error
+  puts "trace (most recent call last):"
+  puts error.backtrace.reverse.map.with_index { |line, index|
+    "\t[#{error.backtrace.size - index}] #{line}"
+  }.join("\n") if error.backtrace
+  puts "#{error} (#{error.class})"
 end
 
 def fetch_code
@@ -16,22 +26,8 @@ def fetch_code
   example = File.open('example.rb', 'w')
   example.write(code)
   example.close
-
 end
 
 fetch_code
 
-begin
-  require %q(./example)
-rescue SyntaxError, StandardError => error
-  $error = error
-  puts $error.message
-  puts $error.backtrace unless $error.backtrace.nil?
-
-  unless window_ready?
-    init_window(800, 480, "Error!")
-    set_target_fps(30)
-  end
-
-  set_main_loop 'error_main'
-end
+require %q(./example)
