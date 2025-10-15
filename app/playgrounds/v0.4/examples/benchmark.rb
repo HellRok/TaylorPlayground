@@ -34,8 +34,17 @@ class Character
     @destination.x += @direction.x * delta
     @destination.y += @direction.y * delta
 
-    @direction.x *= -1 if @destination.x < 0 || @destination.x > 776
-    @direction.y *= -1 if @destination.y < 0 || @destination.y > 456
+    if @destination.x < 12
+      @direction.x = @direction.x.abs
+    elsif @destination.x > 800 - 12
+      @direction.x = -@direction.x.abs
+    end
+
+    if @destination.y < 12
+      @direction.y = @direction.abs
+    elsif @destination.y > 480 - 12
+      @direction.y = -@direction.abs
+    end
 
     @timer -= delta
     toggle_sprite if @timer <= 0
