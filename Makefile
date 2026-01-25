@@ -1,6 +1,3 @@
-deploy:
-	caprover deploy --default --caproverApp playground --branch main
-
 build:
 	docker build . --pull --tag taylor-playground
 

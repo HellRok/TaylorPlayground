@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+caprover deploy \
+  --caproverName Production \
+  --caproverApp playground \
+  --branch main

@@ -1,61 +1,6 @@
 /* General */
 :root {
-  --toolbar-height: 50px;
-}
-
-:root {
-  --font-family: system-ui, sans-serif;
-
-  /* https://github.com/navarasu/onedark.nvim/blob/master/lua/onedark/palette.lua */
-  --black: #0e1013;
-  --bg0: #1f2329;
-  --bg1: #282c34;
-  --bg2: #30363f;
-  --bg3: #323641;
-  --bg_d: #181b20;
-  --bg_blue: #61afef;
-  --bg_yellow: #e8c88c;
-  --fg: #a0a8b7;
-  --purple: #bf68d9;
-  --green: #8ebd6b;
-  --orange: #cc9057;
-  --blue: #4fa6ed;
-  --yellow: #e2b86b;
-  --cyan: #48b0bd;
-  --red: #e55561;
-  --grey: #535965;
-  --light_grey: #7a818e;
-  --dark_cyan: #266269;
-  --dark_red: #8b3434;
-  --dark_yellow: #835d1a;
-  --dark_purple: #7e3992;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --black: #101012;
-    --bg0: #fafafa;
-    --bg1: #f0f0f0;
-    --bg2: #e6e6e6;
-    --bg3: #dcdcdc;
-    --bg_d: #c9c9c9;
-    --bg_blue: #68aee8;
-    --bg_yellow: #e2c792;
-    --fg: #383a42;
-    --purple: #a626a4;
-    --green: #50a14f;
-    --orange: #c18401;
-    --blue: #4078f2;
-    --yellow: #986801;
-    --cyan: #0184bc;
-    --red: #e45649;
-    --grey: #a0a1a7;
-    --light_grey: #818387;
-    --dark_cyan: #2b5d63;
-    --dark_red: #833b3b;
-    --dark_yellow: #7c5c20;
-    --dark_purple: #79428a;
-  }
+  --toolbar-height: 54px;
 }
 
 * {
@@ -67,6 +12,11 @@ body {
   padding: 0;
   height: 100vh;
   overflow: hidden;
+  grid-template-columns: 1fr;
+}
+
+#playground {
+  grid-column: 1;
 }
 
 .grid {
@@ -79,11 +29,11 @@ body {
 }
 
 .green {
-  border-color: var(--green);
+  border-color: var(--green) !important;
 }
 
 .blue {
-  border-color: var(--blue);
+  border-color: var(--blue) !important;
 }
 
 .hidden {
@@ -130,6 +80,10 @@ label.checkbox {
   margin: 0 4px;
 }
 
+input[type="checkbox"] {
+  display: inline-block;
+}
+
 .toolbar button,
 .toolbar select,
 .toolbar .button {
@@ -143,7 +97,7 @@ label.checkbox input[type="checkbox"] {
 button:hover,
 select:hover,
 a.button:hover {
-  background: var(--bg3);
+  background: var(--bg3) !important;
 }
 
 button {
@@ -167,7 +121,7 @@ a.button:visited {
 
 .embed-form label {
   margin: 3px auto;
-  width: 200px;
+  width: 220px;
   display: block;
 }
 

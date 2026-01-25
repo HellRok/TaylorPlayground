@@ -13,23 +13,25 @@ interface ToolbarProps {
 export function Toolbar({ showShare, setShowShare }: ToolbarProps) {
   const [state, dispatch] = useStateContext();
 
-  const handleRunClick = () => {
+  const handleRunClick = (e) => {
+    e.preventDefault();
     dispatch({ type: "runCode" });
     cache.bump(state.runningCode);
   };
 
-  const handleShareClick = () => {
+  const handleShareClick = (e) => {
+    e.preventDefault();
     setShowShare(!showShare);
   };
 
   return (
     <div className="toolbar" data-testid="toolbar">
-      <button data-testid="run" className="green" onClick={handleRunClick}>
+      <a data-testid="run" className="button green toolbar--run-button" onClick={handleRunClick}>
         Run
-      </button>
-      <button data-testid="share" className="blue" onClick={handleShareClick}>
+      </a>
+      <a data-testid="share" className="button blue toolbar--share-button" onClick={handleShareClick}>
         {showShare ? "Edit" : "Share"}
-      </button>
+      </a>
       <Version />
       <Example />
       <a
