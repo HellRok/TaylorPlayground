@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "v0.3.14.1",
+  "version": "v0.4.1",
   "input": "game.rb",
   "export_directory": "exports",
   "export_targets": ["web"],

@@ -1,3 +1,6 @@
+clean:
+	rm -rf dist/*
+
 build:
 	docker build . --pull --tag taylor-playground
 
@@ -5,7 +8,7 @@ playgrounds: build
 	bin/docker/dev-playgrounds
 
 run: build
-	docker run --publish 3001:3000 taylor-playground:latest
+	docker run -it --publish 3001:3000 taylor-playground:latest
 
 shell: build
 	docker run -it taylor-playground:latest bash

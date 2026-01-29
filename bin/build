@@ -12,6 +12,7 @@ def read_all(files)
 end
 
 examples = {
+  "v0.4.1" => read_all("app/playgrounds/v0.4/examples/*.rb"),
   "v0.4.0" => read_all("app/playgrounds/v0.4/examples/*.rb"),
   "v0.3.14.1" => read_all("app/playgrounds/v0.3/examples/*.rb"),
 }
