@@ -30,11 +30,11 @@ describe("Playground", () => {
     });
   });
 
-  it("Loads welcome.rb for Taylor v0.4.0 by default", () => {
+  it("Loads welcome.rb for Taylor v0.4.1 by default", () => {
     render(<Playground />);
 
     const versionSelector: HTMLSelectElement = screen.getByTestId("version");
-    expect(versionSelector.value).toEqual("v0.4.0");
+    expect(versionSelector.value).toEqual("v0.4.1");
 
     const exampleSelector: HTMLSelectElement = screen.getByTestId("example");
     expect(exampleSelector.value).toEqual("welcome.rb");
@@ -42,11 +42,12 @@ describe("Playground", () => {
     const taylorSelector: HTMLIFrameElement =
       screen.getByTestId("taylor-iframe");
     const iframeUrl = new URL(taylorSelector.src);
-    expect(iframeUrl.pathname).toEqual("/v0.4.0");
+    expect(iframeUrl.pathname).toEqual("/v0.4.1/");
 
     const params = embedParams.parse(iframeUrl.hash);
     expect(params.console).toBe(true);
-    expect(params.code.length).toEqual(14);
+    // I don't love this test, but it works for now.
+    expect(params.code.length).toEqual(828);
   });
 
   it("changes to share when the share button is clicked", async () => {

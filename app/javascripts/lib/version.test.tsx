@@ -18,6 +18,7 @@ describe("Version", () => {
       .querySelectorAll("option");
 
     expect(Array.from(optionElements).map((elem) => elem.textContent)).toEqual([
+      "v0.4.1",
       "v0.4.0",
       "v0.3.14.1",
     ]);

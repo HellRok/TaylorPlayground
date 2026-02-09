@@ -45,7 +45,7 @@ describe("Toolbar", () => {
 
     const docLink: HTMLAnchorElement = screen.getByTestId("documentation");
     expect(docLink.href).toEqual(
-      "https://taylormadetech.dev/documentation/taylor/v0.4.0/",
+      "https://taylormadetech.dev/documentation/taylor/v0.4.1/",
     );
 
     await user.selectOptions(screen.getByTestId("version"), "v0.3.14.1");

@@ -18,6 +18,7 @@ describe("Example", () => {
       .querySelectorAll("option");
 
     expect(Array.from(optionElements).map((elem) => elem.textContent)).toEqual([
+      "benchmark.rb",
       "custom.rb",
       "welcome.rb",
     ]);

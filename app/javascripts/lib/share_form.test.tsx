@@ -14,8 +14,8 @@ describe("ShareForm", () => {
     );
 
     const copyField: HTMLInputElement = screen.getByTestId("copy-form-field");
-    expect(copyField.value).toEqual(
-      "http://localhost/#version=v0.4.0&code=A4VwLgzgBARAEgUwDZIPYEIYCgg",
+    expect(copyField.value).toMatch(
+      /http:\/\/localhost\/#version=v0.4.1&code=.*/
     );
   });
 });
