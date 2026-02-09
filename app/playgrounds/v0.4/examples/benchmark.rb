@@ -34,16 +34,16 @@ class Character
     @destination.x += @direction.x * delta
     @destination.y += @direction.y * delta
 
-    if @destination.x < 12
+    if @destination.x < 0
       @direction.x = @direction.x.abs
-    elsif @destination.x > 800 - 12
+    elsif @destination.x > 800 - 24
       @direction.x = -@direction.x.abs
     end
 
-    if @destination.y < 12
-      @direction.y = @direction.abs
-    elsif @destination.y > 480 - 12
-      @direction.y = -@direction.abs
+    if @destination.y < 0
+      @direction.y = @direction.y.abs
+    elsif @destination.y > 480 - 24
+      @direction.y = -@direction.y.abs
     end
 
     @timer -= delta
@@ -158,10 +158,11 @@ def main
     Window.clear
     $map.draw(
       destination: Rectangle.new(
-        x: 400, y: 226,
+        x: -5, y: -3,
         width: $map.width,
-        height: $map.height
-      )
+        height: $map.height,
+      ),
+      origin: Vector2[0, 0]
     )
     $chars.each(&:draw)
     $pixel_font.draw(
