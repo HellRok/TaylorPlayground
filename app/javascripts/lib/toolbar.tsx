@@ -1,9 +1,10 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction  } from "react";
 
 import { cache } from "./cache";
 import { useStateContext } from "./state";
 import { Version } from "./version";
 import { Example } from "./example";
+import { Licenses } from "./licenses";
 
 interface ToolbarProps {
   showShare: boolean;
@@ -13,14 +14,12 @@ interface ToolbarProps {
 export function Toolbar({ showShare, setShowShare }: ToolbarProps) {
   const [state, dispatch] = useStateContext();
 
-  const handleRunClick = (e) => {
-    e.preventDefault();
+  const handleRunClick = () => {
     dispatch({ type: "runCode" });
     cache.bump(state.runningCode);
   };
 
-  const handleShareClick = (e) => {
-    e.preventDefault();
+  const handleShareClick = () => {
     setShowShare(!showShare);
   };
 
@@ -50,6 +49,7 @@ export function Toolbar({ showShare, setShowShare }: ToolbarProps) {
       >
         Documentation
       </a>
+      <Licenses />
     </div>
   );
 }

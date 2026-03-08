@@ -30,10 +30,16 @@ body {
 
 .green {
   border-color: var(--green) !important;
+  &:hover {
+    border-color: var(--green) !important;
+  }
 }
 
 .blue {
   border-color: var(--blue) !important;
+  &:hover {
+    border-color: var(--blue) !important;
+  }
 }
 
 .hidden {
@@ -71,14 +77,24 @@ a.button,
 input,
 textarea,
 label.checkbox {
-  display: inline;
+  display: inline-block;
   padding: 10px;
   color: var(--fg);
   background: var(--bg0);
   border: 2px solid var(--light_grey);
   border-radius: 0;
   margin: 0 4px;
+
+  &:hover {
+    background: var(--bg0) !important;
+    filter: brightness(70%);
+  }
+
+  &:hover:not(.blue,.green) {
+    border-color: var(--light_grey) !important;
+  }
 }
+
 
 input[type="checkbox"] {
   display: inline-block;
@@ -88,16 +104,11 @@ input[type="checkbox"] {
 .toolbar select,
 .toolbar .button {
   margin: 0 4px !important;
+  min-width: 80px;
 }
 
 label.checkbox input[type="checkbox"] {
   margin-right: 10px;
-}
-
-button:hover,
-select:hover,
-a.button:hover {
-  background: var(--bg3) !important;
 }
 
 button {
@@ -157,6 +168,28 @@ a.button:visited {
 }
 .link-form .copy-button {
   width: 100px;
+}
+
+/* Licenses Modal */
+.licenses--modal {
+  background: var(--bg0);
+  border: 2px solid var(--light_grey);
+  text-align: left;
+}
+
+.licenses--modal::backdrop {
+  background: var(--black);
+  opacity: 0.75;
+}
+
+.licenses--title {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.licenses--modal--close-button {
+  text-align: center;
+  float: right;
 }
 
 /* CodeMirror Tweaks */
