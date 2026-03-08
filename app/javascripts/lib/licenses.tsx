@@ -2,22 +2,16 @@ import { useState, useRef, useEffect } from "react";
 
 
 export function Licenses() {
-  const [showLicenses, setShowLicenses] = useState(false);
-
   const dialogRef = useRef<HTMLDialogElement>(null)
 
-  useEffect(() => {
+  const handleLicensesClick = () => {
     if (!dialogRef.current) { return }
 
-    if (dialogRef.current.open && !showLicenses) {
+    if (dialogRef.current.open) {
       dialogRef.current.close()
-    } else if (!dialogRef.current.open && showLicenses) {
+    } else {
       dialogRef.current.showModal()
     }
-  }, [showLicenses])
-
-  const handleLicensesClick = () => {
-    setShowLicenses(!showLicenses);
   };
 
   const data = [
@@ -37,6 +31,112 @@ export function Licenses() {
         "assets/characters.png",
         "assets/tiles.png",
         "assets/backgrounds.png",
+      ],
+    },
+    {
+      group: "Kenny Interface Sounds",
+      link: "https://kenney.nl/assets/interface-sounds",
+      assets:[
+        "back_001.ogg",
+        "back_002.ogg",
+        "back_003.ogg",
+        "back_004.ogg",
+        "bong_001.ogg",
+        "click_001.ogg",
+        "click_002.ogg",
+        "click_003.ogg",
+        "click_004.ogg",
+        "click_005.ogg",
+        "close_001.ogg",
+        "close_002.ogg",
+        "close_003.ogg",
+        "close_004.ogg",
+        "confirmation_001.ogg",
+        "confirmation_002.ogg",
+        "confirmation_003.ogg",
+        "confirmation_004.ogg",
+        "drop_001.ogg",
+        "drop_002.ogg",
+        "drop_003.ogg",
+        "drop_004.ogg",
+        "error_001.ogg",
+        "error_002.ogg",
+        "error_003.ogg",
+        "error_004.ogg",
+        "error_005.ogg",
+        "error_006.ogg",
+        "error_007.ogg",
+        "error_008.ogg",
+        "glass_001.ogg",
+        "glass_002.ogg",
+        "glass_003.ogg",
+        "glass_004.ogg",
+        "glass_005.ogg",
+        "glass_006.ogg",
+        "glitch_001.ogg",
+        "glitch_002.ogg",
+        "glitch_003.ogg",
+        "glitch_004.ogg",
+        "maximize_001.ogg",
+        "maximize_002.ogg",
+        "maximize_003.ogg",
+        "maximize_004.ogg",
+        "maximize_005.ogg",
+        "maximize_006.ogg",
+        "maximize_007.ogg",
+        "maximize_008.ogg",
+        "maximize_009.ogg",
+        "minimize_001.ogg",
+        "minimize_002.ogg",
+        "minimize_003.ogg",
+        "minimize_004.ogg",
+        "minimize_005.ogg",
+        "minimize_006.ogg",
+        "minimize_007.ogg",
+        "minimize_008.ogg",
+        "minimize_009.ogg",
+        "open_001.ogg",
+        "open_002.ogg",
+        "open_003.ogg",
+        "open_004.ogg",
+        "pluck_001.ogg",
+        "pluck_002.ogg",
+        "question_001.ogg",
+        "question_002.ogg",
+        "question_003.ogg",
+        "question_004.ogg",
+        "scratch_001.ogg",
+        "scratch_002.ogg",
+        "scratch_003.ogg",
+        "scratch_004.ogg",
+        "scratch_005.ogg",
+        "scroll_001.ogg",
+        "scroll_002.ogg",
+        "scroll_003.ogg",
+        "scroll_004.ogg",
+        "scroll_005.ogg",
+        "select_001.ogg",
+        "select_002.ogg",
+        "select_003.ogg",
+        "select_004.ogg",
+        "select_005.ogg",
+        "select_006.ogg",
+        "select_007.ogg",
+        "select_008.ogg",
+        "switch_001.ogg",
+        "switch_002.ogg",
+        "switch_003.ogg",
+        "switch_004.ogg",
+        "switch_005.ogg",
+        "switch_006.ogg",
+        "switch_007.ogg",
+        "tick_001.ogg",
+        "tick_002.ogg",
+        "tick_004.ogg",
+        "toggle_001.ogg",
+        "toggle_002.ogg",
+        "toggle_003.ogg",
+        "toggle_004.ogg",
       ],
     },
     {
@@ -63,14 +163,19 @@ export function Licenses() {
         Licenses
       </a>
       <dialog className="licenses--modal" ref={dialogRef}>
-        {data.map(datum => <p>
-            <a
-              className="licenses--title"
-              href={datum.link}>
-              {datum.group}
-            </a>
-            <ul>{datum.assets.map(asset => <li>{asset}</li>)}</ul>
-          </p>)}
+        <div className="licenses--modal--body">
+          {data.map(datum => <p>
+              <a
+                className="licenses--title"
+                href={datum.link}>
+                {datum.group}
+              </a>
+              <details>
+                <summary>Assets</summary>
+                <ul>{datum.assets.map(asset => <li>{asset}</li>)}</ul>
+              </details>
+            </p>)}
+        </div>
 
         <a data-testid="licenses" className="button licenses--modal--close-button" onClick={handleLicensesClick}>
           Close

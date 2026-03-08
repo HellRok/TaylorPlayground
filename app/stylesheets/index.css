@@ -174,7 +174,6 @@ a.button:visited {
 .licenses--modal {
   background: var(--bg0);
   border: 2px solid var(--light_grey);
-  text-align: left;
 }
 
 .licenses--modal::backdrop {
@@ -187,8 +186,13 @@ a.button:visited {
   font-weight: 700;
 }
 
+.licenses--modal--body {
+  text-align: left;
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
 .licenses--modal--close-button {
-  text-align: center;
   float: right;
 }
 
