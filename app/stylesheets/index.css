@@ -26,6 +26,7 @@ body {
 
 .grid > div {
   height: calc(100vh - var(--toolbar-height));
+  max-width: 50vw;
 }
 
 .green {
@@ -55,14 +56,11 @@ iframe {
 
 /* Toolbar */
 .toolbar {
+  min-width: 860px;
   padding: 2px;
   height: var(--toolbar-height);
   text-align: center;
   background: var(--bg0);
-}
-
-.examples {
-  display: inline-block;
 }
 /* END */
 
