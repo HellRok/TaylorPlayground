@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction  } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import { cache } from "./cache";
 import { useStateContext } from "./state";
@@ -25,10 +25,18 @@ export function Toolbar({ showShare, setShowShare }: ToolbarProps) {
 
   return (
     <div className="toolbar" data-testid="toolbar">
-      <a data-testid="run" className="button green toolbar--run-button" onClick={handleRunClick}>
+      <a
+        data-testid="run"
+        className="button green toolbar--run-button"
+        onClick={handleRunClick}
+      >
         Run
       </a>
-      <a data-testid="share" className="button blue toolbar--share-button" onClick={handleShareClick}>
+      <a
+        data-testid="share"
+        className="button blue toolbar--share-button"
+        onClick={handleShareClick}
+      >
         {showShare ? "Edit" : "Share"}
       </a>
       <Version />

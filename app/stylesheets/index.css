@@ -88,11 +88,10 @@ label.checkbox {
     filter: brightness(70%);
   }
 
-  &:hover:not(.blue,.green) {
+  &:hover:not(.blue, .green) {
     border-color: var(--light_grey) !important;
   }
 }
-
 
 input[type="checkbox"] {
   display: inline-block;

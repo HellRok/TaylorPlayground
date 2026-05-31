@@ -2,30 +2,64 @@
 
 require "json"
 
-def read_all(files)
-  result = {}
-  Dir.glob(files).each { |file|
+def examples_for(folder)
+  Dir.glob("app/playgrounds/#{folder}/examples/*.rb").each_with_object({}) { |file, result|
     result[File.basename(file)] = File.read(file)
   }
-
-  result
 end
 
-examples = {
-  "v0.4.1" => read_all("app/playgrounds/v0.4/examples/*.rb"),
-  "v0.4.0" => read_all("app/playgrounds/v0.4/examples/*.rb"),
-  "v0.3.14.1" => read_all("app/playgrounds/v0.3/examples/*.rb"),
+by_folder = {
+  "v0.4" => [
+    "v0.4.3",
+    "v0.4.2",
+    "v0.4.1",
+    "v0.4.0",
+  ],
+  "v0.3" => [
+    "v0.3.14.1",
+  ],
 }
 
-File.write(
-  "app/javascripts/lib/example_data.ts",
-  <<~TYPESCRIPT)
-    export const ExampleData = {
-      codeFor: (version: string, example: string) => ExampleData.data[version][example],
-      versions: () => Object.keys(ExampleData.data),
-      initialVersion: (): string => ExampleData.versions()[0],
-      examplesFor: (version: string) => Object.keys(ExampleData.data[version]),
+examples = by_folder.each_with_object({}) do |(folder, versions), result|
+  versions.each do |version|
+    result[version] = examples_for(folder)
+  end
+end
 
-      data: #{JSON.pretty_generate(examples)},
+File.write("app/javascripts/lib/example_data.ts", <<~TYPESCRIPT)
+  export const ExampleData = {
+    codeFor: (version: string, example: string) => ExampleData.data[version][example],
+    versions: () => Object.keys(ExampleData.data),
+    initialVersion: (): string => ExampleData.versions()[0],
+    examplesFor: (version: string) => Object.keys(ExampleData.data[version]),
+
+    data: #{JSON.pretty_generate(examples)},
+  }
+TYPESCRIPT
+
+exit unless File.exist?("Dockerfile.template")
+dockerfile = File.read("Dockerfile.template")
+
+dockerfile.gsub!(
+  "$BUILD_PLAYGROUNDS",
+  by_folder.flat_map { |folder, versions|
+    versions.map { |version|
+      <<~STR
+        # Playground #{version}
+        FROM hellrok/taylor:web-#{version} AS playground-#{version}
+        WORKDIR /app
+        COPY app/playgrounds/#{folder} bin/docker/build-playground /app/game/
+        COPY app/playgrounds/assets /app/game/assets/
+        RUN /app/game/build-playground
+
+      STR
     }
-  TYPESCRIPT
+  }.join
+).gsub!(
+  "$COPY_PLAYGROUNDS",
+  by_folder.values.flatten.map do |version|
+    "COPY --from=playground-#{version} /app/game/exports /app/html/#{version}/"
+  end.join("\n")
+)
+
+File.write("Dockerfile", dockerfile)

@@ -30,11 +30,11 @@ describe("Playground", () => {
     });
   });
 
-  it("Loads welcome.rb for Taylor v0.4.1 by default", () => {
+  it("Loads welcome.rb for Taylor v0.4.3 by default", () => {
     render(<Playground />);
 
     const versionSelector: HTMLSelectElement = screen.getByTestId("version");
-    expect(versionSelector.value).toEqual("v0.4.1");
+    expect(versionSelector.value).toEqual("v0.4.3");
 
     const exampleSelector: HTMLSelectElement = screen.getByTestId("example");
     expect(exampleSelector.value).toEqual("welcome.rb");
@@ -42,7 +42,7 @@ describe("Playground", () => {
     const taylorSelector: HTMLIFrameElement =
       screen.getByTestId("taylor-iframe");
     const iframeUrl = new URL(taylorSelector.src);
-    expect(iframeUrl.pathname).toEqual("/v0.4.1/");
+    expect(iframeUrl.pathname).toEqual("/v0.4.3/");
 
     const params = embedParams.parse(iframeUrl.hash);
     expect(params.console).toBe(true);
