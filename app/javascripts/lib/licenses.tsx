@@ -1,16 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 
-
 export function Licenses() {
-  const dialogRef = useRef<HTMLDialogElement>(null)
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   const handleLicensesClick = () => {
-    if (!dialogRef.current) { return }
+    if (!dialogRef.current) {
+      return;
+    }
 
     if (dialogRef.current.open) {
-      dialogRef.current.close()
+      dialogRef.current.close();
     } else {
-      dialogRef.current.showModal()
+      dialogRef.current.showModal();
     }
   };
 
@@ -18,7 +19,7 @@ export function Licenses() {
     {
       group: "Kenny Pixel Platformer",
       link: "https://kenney.nl/assets/pixel-platformer",
-      assets:[
+      assets: [
         "assets/characters.png",
         "assets/tiles.png",
         "assets/backgrounds.png",
@@ -27,7 +28,7 @@ export function Licenses() {
     {
       group: "Kenny Fonts",
       link: "https://kenney.nl/assets/kenney-fonts",
-      assets:[
+      assets: [
         "assets/characters.png",
         "assets/tiles.png",
         "assets/backgrounds.png",
@@ -36,7 +37,7 @@ export function Licenses() {
     {
       group: "Kenny Interface Sounds",
       link: "https://kenney.nl/assets/interface-sounds",
-      assets:[
+      assets: [
         "back_001.ogg",
         "back_002.ogg",
         "back_003.ogg",
@@ -142,46 +143,51 @@ export function Licenses() {
     {
       group: "Raylib",
       link: "https://github.com/raysan5/raylib/tree/master/examples",
-      assets:[
-        "assets/scarfy.png",
-        "assets/ps3.png",
-        "assets/xbox.png",
-      ],
+      assets: ["assets/scarfy.png", "assets/ps3.png", "assets/xbox.png"],
     },
     {
       group: "Positive Loop",
       link: "https://pixabay.com/music/electronic-positive-loop-494799/",
-      assets:[
-        "assets/positive_loop.ogg",
-      ],
-    }
+      assets: ["assets/positive_loop.ogg"],
+    },
   ];
 
   return (
     <>
-      <a data-testid="licenses" className="button toolbar--licenses-button" onClick={handleLicensesClick}>
+      <a
+        data-testid="licenses"
+        className="button toolbar--licenses-button"
+        onClick={handleLicensesClick}
+      >
         Licenses
       </a>
       <dialog className="licenses--modal" ref={dialogRef}>
         <div className="licenses--modal--body">
-          {data.map(datum => <p>
-              <a
-                className="licenses--title"
-                href={datum.link}>
+          {data.map((datum, index) => (
+            <div key={index}>
+              <a className="licenses--title" href={datum.link}>
                 {datum.group}
               </a>
               <details>
                 <summary>Assets</summary>
-                <ul>{datum.assets.map(asset => <li>{asset}</li>)}</ul>
+                <ul>
+                  {datum.assets.map((asset, subindex) => (
+                    <li key={`${index}-${subindex}`}>{asset}</li>
+                  ))}
+                </ul>
               </details>
-            </p>)}
+            </div>
+          ))}
         </div>
 
-        <a data-testid="licenses" className="button licenses--modal--close-button" onClick={handleLicensesClick}>
+        <a
+          data-testid="licenses"
+          className="button licenses--modal--close-button"
+          onClick={handleLicensesClick}
+        >
           Close
         </a>
       </dialog>
     </>
   );
 }
-
