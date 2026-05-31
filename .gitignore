@@ -5,5 +5,4 @@ node_modules
 meta.json
 
 # Programmatically generated
-Dockerfile
 app/javascripts/lib/example_data.ts
